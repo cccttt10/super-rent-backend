@@ -1,17 +1,8 @@
-const mysql = require('mysql');
-const dotenv = require('dotenv');
-const Log = require('./util/Log');
-const log = new Log();
+require('./db').initDb();
+const app = require('./app');
+const log = require('./util/log');
+const port = process.env.PORT || 3300;
 
-dotenv.config({ path: './config.env' });
-
-const connection = mysql.createConnection({
-    host: process.env.DATABASE_IP,
-    user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD
-});
-
-connection.connect(err => {
-    if (err) throw err;
-    else log.success('👌 database connection successful!');
+app.listen(port, () => {
+    log.success(`App running on port ${port}...`);
 });

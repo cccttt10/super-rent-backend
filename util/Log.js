@@ -1,13 +1,21 @@
 const colors = require('colors');
 
-class Log {
-    success(info) {
-        console.log(
-            colors.italic(
-                colors.underline(colors.bold(colors.cyan(info)))
-            )
-        );
-    }
-}
+exports.success = info => {
+    console.log(
+        colors.italic(
+            colors.underline(colors.bold(colors.cyan(info)))
+        )
+    );
+};
 
-module.exports = Log;
+exports.error = info => {
+    console.log(
+        colors.bgRed(
+            colors.italic(
+                colors.underline(
+                    colors.bold(colors.brightWhite(info))
+                )
+            )
+        )
+    );
+};

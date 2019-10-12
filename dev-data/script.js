@@ -1,10 +1,8 @@
 const fs = require('fs');
 const mysql = require('mysql');
 const dotenv = require('dotenv');
-const Log = require('../util/Log');
-const QueryHandler = require('../util/QueryHandler');
-const log = new Log();
-const queryHandler = new QueryHandler();
+const log = require('../util/log');
+const queryHandler = require('../util/queryHandler');
 
 dotenv.config({ path: './config.env' });
 
@@ -94,3 +92,5 @@ if (process.argv[2] === '--import') {
 else if (process.argv[2] === '--delete') {
     deleteData();
 }
+
+process.exit(1);
