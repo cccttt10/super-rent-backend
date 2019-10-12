@@ -1,0 +1,25 @@
+{
+  "name": "super-rent-backend",
+  "version": "1.0.0",
+  "description": "Node.js backend for CPSC 304 project super rent",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "start:prod": "NODE_ENV=production nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chuntonggao/super-rent-backend.git"
+  },  
+  "author": "Yifei Chen, Chuntong Gao, Frank Zhou",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  }
+}

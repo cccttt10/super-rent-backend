@@ -1,0 +1,25 @@
+[
+  '{{repeat(45, 45)}}',
+  {
+    _id: '{{objectId()}}',
+    index: '{{index()}}',
+ 
+    licence: '{{integer(1000000, 9999999)}}',
+    
+     make: '{{random("BMW", "Benz", "Honda", "Toyota",  "Mazda", "Ford", "Volkswagen")}}',
+    
+    
+     model: '{{random("model a", "model b", "model c", "model s",  "model ss")}}',
+    year:'{{integer(1990, 2019)}}',
+    
+     color: '{{random("blue", "brown", "green")}}',
+    odometer: function() {
+      var rand =  Math.floor(Math.random() * (100000 - 0 + 1)) + 0
+      return rand + 'km';
+    },
+    status: '{{random("available for rent", "available for sale", "rented", "sold")}}',
+    
+   
+    acquired: '{{date(new Date(1992, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}'
+  }   
+]

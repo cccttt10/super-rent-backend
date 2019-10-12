@@ -1,0 +1,27 @@
+[
+  '{{repeat(30, 30)}}',
+  {
+    _id: '{{objectId()}}',
+    index: '{{index()}}',
+    phone: '+1 {{phone()}}',
+    name: '{{firstName()}} {{surname()}}',
+    address: '{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}',
+    driversLicence: '{{integer(1000000, 9999999)}}',
+    isClubMember: '{{bool()}}',
+    points: function() {
+      var max = 1000;
+      var min = 0;   
+      var rand =  Math.floor(Math.random() * (max - min + 1)) + min
+      return this.isClubMember ? rand : 0;
+    },
+    fees: function() {
+      var max = 1000.00;
+      var min = 0.00;
+      var rand =  (Math.random() * (max - min + 1)) + min;
+      rand = rand.toFixed(2);
+      rand = '$' + rand;
+      return this.isClubMember ? rand : '$0.00';
+    },
+    registered: '{{date(new Date(2019, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}'
+  }   
+]
