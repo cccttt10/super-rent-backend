@@ -7,11 +7,13 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "start:prod": "NODE_ENV=production nodemon index.js",
+    "import": "node ./dev-data/script.js --import",
+    "delete": "node ./dev-data/script.js --delete",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chuntonggao/super-rent-backend.git"
+    "url": "https://github.com/chuntonggao/super-rent-backend.git"
   },
   "author": "Yifei Chen, Chuntong Gao, Frank Zhou",
   "license": "ISC",
