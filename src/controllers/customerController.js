@@ -8,19 +8,17 @@ exports.getAllCustomers = async (req, res, next) => {
     const totalCount = customers.length;
     customers = customers.map(customer => {
         if (customer.isClubMember === 0) customer.isClubMember = 'no';
-        if (customer.isClubMember === 1)
-            customer.isClubMember = 'yes';
+        if (customer.isClubMember === 1) customer.isClubMember = 'yes';
         return customer;
     });
     if (req.query._start && req.query._end)
         customers = dataHandler.paginate(customers, req);
     if (req.query._sort && req.query._order)
         customers = dataHandler.sort(customers, req);
-    res
-        .status(200)
+    res.status(200)
         .set({
             'X-Total-Count': totalCount,
-            'Access-Control-Expose-Headers': [ 'X-Total-Count' ]
+            'Access-Control-Expose-Headers': ['X-Total-Count']
         })
         .json(customers);
 };
@@ -33,11 +31,10 @@ exports.getCustomer = async (req, res, next) => {
     const customer = results[0][0];
     if (customer.isClubMember === 0) customer.isClubMember = 'no';
     if (customer.isClubMember === 1) customer.isClubMember = 'yes';
-    res
-        .status(200)
+    res.status(200)
         .set({
             'X-Total-Count': 1,
-            'Access-Control-Expose-Headers': [ 'X-Total-Count' ]
+            'Access-Control-Expose-Headers': ['X-Total-Count']
         })
         .json(customer);
 };
@@ -60,16 +57,13 @@ exports.updateCustomer = async (req, res, next) => {
                 WHERE id = '${id}';
         `
     );
-    let results = await _db.query(
-        `SELECT * FROM customer WHERE id = '${id}';`
-    );
+    let results = await _db.query(`SELECT * FROM customer WHERE id = '${id}';`);
     results = JSON.parse(JSON.stringify(results));
     const updatedCustomer = results[0][0];
-    res
-        .status(200)
+    res.status(200)
         .set({
             'X-Total-Count': 1,
-            'Access-Control-Expose-Headers': [ 'X-Total-Count' ]
+            'Access-Control-Expose-Headers': ['X-Total-Count']
         })
         .json(updatedCustomer);
 };
