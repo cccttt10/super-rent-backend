@@ -12,11 +12,17 @@ exports.getAllCustomers = (req, res, next) => {
                 next(err);
             }
             else {
-                res.status(200).json({
-                    status: 'success',
-                    numResults: data.length,
-                    data
-                });
+                res
+                    .status(200)
+                    .set({
+                        'Content-Range': `customers 0-${data.length}/${data.length}`,
+                        'Access-Control-Expose-Headers': 'Content-Range'
+                    })
+                    .json({
+                        // status: 'success',
+                        total: data.length,
+                        data
+                    });
             }
         }
     );
