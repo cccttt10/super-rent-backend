@@ -15,15 +15,21 @@ exports.getAllVehicles = (req, res, next) => {
                 res
                     .status(200)
                     .set({
+                        'X-Total-Count': data.length,
                         'Content-Range': `vehicles 0-${data.length}/${data.length}`,
-                        'Access-Control-Expose-Headers':
-                            'Content-Range'
+                        'Access-Control-Expose-Headers': [
+                            'Content-Range',
+                            'X-Total-Count'
+                        ]
                     })
-                    .json({
-                        // status: 'success',
-                        total: data.length,
+                    .json(
                         data
-                    });
+                        // {
+                        //     status: 'success',
+                        //     total: data.length,
+                        //     data
+                        // }
+                    );
             }
         }
     );
