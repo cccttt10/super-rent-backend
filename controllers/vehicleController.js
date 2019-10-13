@@ -32,3 +32,27 @@ exports.getAllVehicles = (req, res, next) => {
         }
     );
 };
+
+exports.getVehicle = (req, res, next) => {
+    _db.query(
+        `
+            SELECT * FROM vehicle where id = "${req.params.id}";
+        `,
+        (err, data) => {
+            if (err) {
+                log.error(err);
+                next(err);
+            }
+            else
+                res
+                    .status(200)
+                    .set({
+                        'X-Total-Count': 1,
+                        'Access-Control-Expose-Headers': [
+                            'X-Total-Count'
+                        ]
+                    })
+                    .json(data[0]);
+        }
+    );
+};
