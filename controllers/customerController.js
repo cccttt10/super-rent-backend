@@ -1,5 +1,6 @@
 const _db = require('../db').getDb();
 const log = require('../util/log');
+const dataHandler = require('../util/dataHandler');
 
 exports.getAllCustomers = (req, res, next) => {
     _db.query(
@@ -12,6 +13,7 @@ exports.getAllCustomers = (req, res, next) => {
                 next(err);
             }
             else {
+                const totalCount = data.length;
                 data = data.map(customer => {
                     if (customer.isClubMember === 0)
                         customer.isClubMember = 'no';
@@ -19,24 +21,17 @@ exports.getAllCustomers = (req, res, next) => {
                         customer.isClubMember = 'yes';
                     return customer;
                 });
+                if (req.query._start && req.query._end)
+                    data = dataHandler.paginate(data, req);
                 res
                     .status(200)
                     .set({
-                        'X-Total-Count': data.length,
-                        'Content-Range': `customers 0-${data.length}/${data.length}`,
+                        'X-Total-Count': totalCount,
                         'Access-Control-Expose-Headers': [
-                            'Content-Range',
                             'X-Total-Count'
                         ]
                     })
-                    .json(
-                        data
-                        // {
-                        //     status: 'success',
-                        //     total: data.length,
-                        //     data
-                        // }
-                    );
+                    .json(data);
             }
         }
     );
