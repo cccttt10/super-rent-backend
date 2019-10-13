@@ -35,7 +35,7 @@ const connect = () => {
 
 const importData = () => {
     const customers = JSON.parse(
-        fs.readFileSync('./dev-data/data/customers.json', 'utf8')
+        fs.readFileSync('src/dev-data/data/customers.json', 'utf8')
     );
 
     connection.query(
@@ -73,7 +73,7 @@ const importData = () => {
     }
 
     const vehicles = JSON.parse(
-        fs.readFileSync('./dev-data/data/vehicles.json', 'utf8')
+        fs.readFileSync('src/dev-data/data/vehicles.json', 'utf8')
     );
 
     connection.query(

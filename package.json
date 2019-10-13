@@ -2,16 +2,16 @@
     "name": "super-rent-backend",
     "version": "1.0.0",
     "description": "Node.js backend for CPSC 304 project super rent",
-    "main": "index.js",
+    "main": "./src/index.js",
     "engines": {
         "node": ">= 10 < 11"
     },
     "scripts": {
-        "start": "node index.js",
-        "dev": "nodemon index.js",
-        "start:prod": "NODE_ENV=production nodemon index.js",
-        "import": "node ./dev-data/script.js --import",
-        "delete": "node ./dev-data/script.js --delete",
+        "start": "node src/index.js",
+        "dev": "nodemon src/index.js",
+        "start:prod": "NODE_ENV=production nodemon src/index.js",
+        "import": "node src/dev-data/script.js --import",
+        "delete": "node src/dev-data/script.js --delete",
         "lint": "eslint . --ext .js",
         "lint:fix": "eslint . --ext .js --fix",
         "pretty": "prettier --config ./.prettierrc.json --write \"./**/*.js\" && npm run lint:fix",

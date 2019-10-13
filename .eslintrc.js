@@ -6,7 +6,7 @@ module.exports = {
     },
     overrides: [
         {
-            files: ['util/log.js'],
+            files: ['src/util/log.js'],
             rules: {
                 'no-console': 'off'
             }
