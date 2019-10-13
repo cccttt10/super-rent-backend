@@ -6,6 +6,7 @@ const queryHandler = require('../util/queryHandler');
 
 dotenv.config({ path: './config.env' });
 
+console.log('this isok');
 const connection = mysql.createConnection({
     host: process.env.DATABASE_IP,
     user: process.env.DATABASE_USER,
@@ -18,6 +19,7 @@ const connect = () => {
         else log.success('👌 database connection successful!');
     });
 
+    console.log('I am in connect');
     connection.query(
         `
            USE super_rent
@@ -73,12 +75,59 @@ const importData = () => {
             queryHandler.defaultCallBack
         );
     }
+
+    const vehicles = JSON.parse(
+        fs.readFileSync('./dev-data/data/vehicles.json', 'utf8')
+    );
+
+    connection.query(
+        `    
+            CREATE TABLE vehicle(
+            uuid VARCHAR(255) PRIMARY KEY,
+            licence INT UNIQUE,
+            make VARCHAR(255),
+            model VARCHAR(255),
+            year INT,
+            color VARCHAR(255),
+            odometer INT,
+            status ENUM("available for rent", "available for sale", "sold", "rented"))
+        `,
+        queryHandler.defaultCallBack
+    );
+
+    for (const vehicle of vehicles) {
+        const {
+            uuid,
+            licence,
+            make,
+            model,
+            year,
+            color,
+            odometer,
+            status
+        } = vehicle;
+        connection.query(
+            `
+                INSERT INTO vehicle(uuid, licence, make, model, year, color, odometer, status)
+                VALUES("${uuid}", ${licence}, "${make}", "${model}", 
+                    ${year}, "${color}", ${odometer}, "${status}")
+            `,
+            queryHandler.defaultCallBack
+        );
+    }
 };
 
 const deleteData = () => {
     connection.query(
         `    
-            DROP TABLE customer
+            DROP TABLE IF EXISTS customer
+        `,
+        queryHandler.defaultCallBack
+    );
+
+    connection.query(
+        `    
+            DROP TABLE IF EXISTS vehicle
         `,
         queryHandler.defaultCallBack
     );
@@ -92,5 +141,3 @@ if (process.argv[2] === '--import') {
 else if (process.argv[2] === '--delete') {
     deleteData();
 }
-
-process.exit(1);
