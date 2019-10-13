@@ -4,6 +4,8 @@
 
 2. Clone your repository by running `git clone REPO_URL` on the command line. You get the `REPO_URL` by clicking on the green button on the GitHub repository page.
 
+3. Place the `config.env` file in the project root directory. Do NOT ever share this file with anyone.
+
 ## Project commands
 
 Once your environment is configured you need to further prepare the project's tooling and dependencies. In the project directory:
