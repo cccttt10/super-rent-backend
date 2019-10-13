@@ -76,16 +76,7 @@ const importData = async () => {
 
     let insertVehiclesQuery = '';
     for (const vehicle of vehicles) {
-        const {
-            id,
-            licence,
-            make,
-            model,
-            year,
-            color,
-            odometer,
-            status
-        } = vehicle;
+        const { id, licence, make, model, year, color, odometer, status } = vehicle;
         insertVehiclesQuery += `
             INSERT INTO vehicle(id, licence, make, model, year, color, odometer, status)
             VALUES("${id}", ${licence}, "${make}", "${model}", 
@@ -111,8 +102,7 @@ const main = async () => {
         await connect();
         if (process.argv[2] === '--import') {
             await importData();
-        }
-        else if (process.argv[2] === '--delete') {
+        } else if (process.argv[2] === '--delete') {
             await deleteData();
         }
     } catch (err) {

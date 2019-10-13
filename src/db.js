@@ -1,43 +1,29 @@
-const mysql = require('mysql');
+const mysql = require('mysql2/promise');
 const dotenv = require('dotenv');
 const log = require('./util/log');
-const queryHandler = require('./util/queryHandler');
-
 let _db;
 
-exports.initDb = () => {
+exports.initDb = async () => {
     dotenv.config({ path: './config.env' });
     if (_db) {
-        log.error(
-            'Database connection is already established! Do not connect again!'
-        );
-        throw new Error(
-            'Database connection is already established! Do not connect again!'
-        );
+        log.error('DB already connected! Do not reconnect!');
+        throw new Error('DB already connected! Do not reconnect!');
     } else {
-        _db = mysql.createConnection({
+        // eslint-disable-next-line require-atomic-updates
+        _db = await mysql.createConnection({
             host: process.env.DATABASE_IP,
             user: process.env.DATABASE_USER,
             password: process.env.DATABASE_PASSWORD,
             multipleStatements: true
         });
-        _db.query(
-            `
-               USE super_rent
-            `,
-            queryHandler.defaultCallBack
-        );
-        log.success('👌 Database connection successful 👌');
+        await _db.query(`USE super_rent;`);
+        log.success('👌 DB connected');
     }
 };
 
 exports.getDb = () => {
     if (!_db) {
-        log.error(
-            'Failed to get database. Please connect to database first by calling initDb!'
-        );
-        throw new Error(
-            'Failed to get database. Please connect to database first by calling initDb!'
-        );
+        log.error('DB not connected! Connect first!');
+        throw new Error('DB not connected! Connect first!');
     } else return _db;
 };

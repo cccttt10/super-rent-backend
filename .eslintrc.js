@@ -1,25 +1,30 @@
 // prettier-ignore
 module.exports = {
-    "extends": ['eslint:recommended'],
-    "env": {
-        "node": true,
-        "es6": true
+    'extends': ['eslint:recommended'],
+    'env': {
+        'node': true,
+        'es6': true
     },
-    "parserOptions": {
-        "ecmaVersion": 8
+    'parserOptions': {
+        'ecmaVersion': 8
     },
-    "overrides": [
+    'overrides': [
         {
-            "files": ['src/util/log.js'],
-            "rules": {
+            'files': ['src/util/log.js'],
+            'rules': {
                 'no-console': 'off'
             }
         }
     ],
-    "rules": {
+    'rules': {
+        'require-await': 'error',
         'no-trailing-spaces': 'error',
         'eqeqeq': 'error',
-        'no-console': 'warn',
-        'camelcase': 'warn'
+        'no-console': 'error',
+        'camelcase': 'error',
+        'no-unused-vars': [
+            'error', 
+            { 'argsIgnorePattern': 'next' }
+        ]
     }
 };

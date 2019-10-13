@@ -21,9 +21,7 @@ exports.getAllVehicles = (req, res, next) => {
                     .set({
                         'X-Total-Count': totalCount,
 
-                        'Access-Control-Expose-Headers': [
-                            'X-Total-Count'
-                        ]
+                        'Access-Control-Expose-Headers': ['X-Total-Count']
                     })
                     .json(data);
             }
@@ -44,9 +42,7 @@ exports.getVehicle = (req, res, next) => {
                 res.status(200)
                     .set({
                         'X-Total-Count': 1,
-                        'Access-Control-Expose-Headers': [
-                            'X-Total-Count'
-                        ]
+                        'Access-Control-Expose-Headers': ['X-Total-Count']
                     })
                     .json(data[0]);
         }
