@@ -18,8 +18,6 @@ const connect = () => {
         if (err) throw err;
         else log.success('👌 database connection successful!');
     });
-
-    console.log('I am in connect');
     connection.query(
         `
            USE super_rent
