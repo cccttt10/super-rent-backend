@@ -74,14 +74,14 @@ exports.getCustomer = (req, res, next) => {
 
 exports.updateCustomer = (req, res, next) => {
     const id = req.params.id;
-    let {
+    const {
         name,
         phone,
         driversLicence,
-        isClubMember,
         points,
         fees
     } = req.body;
+    let { isClubMember } = req.body;
     if (isClubMember === 'yes') isClubMember = true;
     else if (isClubMember === 'no') isClubMember = false;
     _db.query(
