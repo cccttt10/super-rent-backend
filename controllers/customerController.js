@@ -7,14 +7,16 @@ exports.getAllCustomers = (req, res, next) => {
         `
             SELECT * FROM customer LIMIT 1000;
         `,
-        (err, data) => {
+        (err, results) => {
             if (err) {
                 log.error(err);
                 next(err);
             }
             else {
-                const totalCount = data.length;
-                data = data.map(customer => {
+                results = JSON.parse(JSON.stringify(results));
+                let customers = results;
+                const totalCount = customers.length;
+                customers = customers.map(customer => {
                     if (customer.isClubMember === 0)
                         customer.isClubMember = 'no';
                     else if (customer.isClubMember === 1)
@@ -22,9 +24,9 @@ exports.getAllCustomers = (req, res, next) => {
                     return customer;
                 });
                 if (req.query._start && req.query._end)
-                    data = dataHandler.paginate(data, req);
+                    customers = dataHandler.paginate(customers, req);
                 if (req.query._sort && req.query._order)
-                    data = dataHandler.sort(data, req);
+                    customers = dataHandler.sort(customers, req);
                 res
                     .status(200)
                     .set({
@@ -33,7 +35,7 @@ exports.getAllCustomers = (req, res, next) => {
                             'X-Total-Count'
                         ]
                     })
-                    .json(data);
+                    .json(customers);
             }
         }
     );
@@ -42,16 +44,16 @@ exports.getAllCustomers = (req, res, next) => {
 exports.getCustomer = (req, res, next) => {
     _db.query(
         `
-            SELECT * FROM customer where id = "${req.params.id}";
+            SELECT * FROM customer where id = '${req.params.id}';
         `,
-        (err, data) => {
+        (err, results) => {
             if (err) {
                 log.error(err);
                 next(err);
             }
             else {
-                const customer = data[0];
-                console.log(data);
+                results = JSON.parse(JSON.stringify(results));
+                const customer = results[0];
                 if (customer.isClubMember === 0)
                     customer.isClubMember = 'no';
                 else if (customer.isClubMember === 1)
@@ -85,16 +87,16 @@ exports.updateCustomer = (req, res, next) => {
     _db.query(
         `
             UPDATE customer
-            SET name = "${name}",
-                phone = "${phone}",
+            SET name = '${name}',
+                phone = '${phone}',
                 driversLicence = ${driversLicence},
                 isClubMember = ${isClubMember},
                 points = ${points},
                 fees = ${fees}
-                WHERE id = "${id}";
-            SELECT * FROM customer WHERE id = "${id}";
-            `,
-        (err, results, fields) => {
+                WHERE id = '${id}';
+            SELECT * FROM customer WHERE id = '${id}';
+        `,
+        (err, results) => {
             if (err) {
                 log.error(err);
                 next(err);
