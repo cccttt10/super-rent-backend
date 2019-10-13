@@ -4,6 +4,6 @@ const vehicleController = require('../controllers/vehicleController');
 const router = express.Router();
 
 router.route('/').get(vehicleController.getAllVehicles);
-router.route('/:id').get(vehicleController.getVehicle);
+router.route('/:id').get(vehicleController.getVehicle).put(vehicleController.updateVehicle).delete(vehicleController.deleteVehicle);
 
 module.exports = router;

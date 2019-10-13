@@ -33,3 +33,40 @@ exports.getVehicle = async (req, res, next) => {
         })
         .json(vehicle);
 };
+
+exports.updateVehicle = async (req, res, next) => {
+    const id = req.params.id;
+    const { licence, make, model, year, color, odometer, status } = req.body;
+
+    await _db.query(
+        `
+            UPDATE vehicle
+            SET licence = ${licence},
+                make = '${make}',
+                model = '${model}',
+                year = ${year},
+                color = '${color}',
+                odometer = ${odometer},
+                status = '${status}'
+                WHERE id = '${id}';
+        `
+    );
+    let results = await _db.query(
+        `SELECT * FROM vehicle WHERE id = '${id}';`
+    );
+    results = JSON.parse(JSON.stringify(results));
+    const updatedVehicle = results[0][0];
+    res
+        .status(200)
+        .set({
+            'X-Total-Count': 1,
+            'Access-Control-Expose-Headers': [ 'X-Total-Count' ]
+        })
+        .json(updatedVehicle);
+};
+
+exports.deleteVehicle = async (req, res, next) => {
+    const id = req.params.id;
+    await _db.query(`DELETE FROM vehicle WHERE id ='${id}'`);
+    res.status(204).json(null);
+};
