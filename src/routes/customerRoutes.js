@@ -7,6 +7,7 @@ router.route('/').get(customerController.getAllCustomers);
 router
     .route('/:id')
     .get(customerController.getCustomer)
-    .put(customerController.updateCustomer);
+    .put(customerController.updateCustomer)
+    .delete(customerController.deleteCustomer);
 
 module.exports = router;
