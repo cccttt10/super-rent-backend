@@ -17,6 +17,7 @@ module.exports = {
         }
     ],
     'rules': {
+        'no-var': 'error',
         'require-await': 'error',
         'no-trailing-spaces': 'error',
         'eqeqeq': 'error',
