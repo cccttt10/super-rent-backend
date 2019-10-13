@@ -11,15 +11,13 @@ exports.getAllVehicles = (req, res, next) => {
             if (err) {
                 log.error(err);
                 next(err);
-            }
-            else {
+            } else {
                 const totalCount = data.length;
                 if (req.query._start && req.query._end)
                     data = dataHandler.paginate(data, req);
                 if (req.query._sort && req.query._order)
                     data = dataHandler.sort(data, req);
-                res
-                    .status(200)
+                res.status(200)
                     .set({
                         'X-Total-Count': totalCount,
 
@@ -42,10 +40,8 @@ exports.getVehicle = (req, res, next) => {
             if (err) {
                 log.error(err);
                 next(err);
-            }
-            else
-                res
-                    .status(200)
+            } else
+                res.status(200)
                     .set({
                         'X-Total-Count': 1,
                         'Access-Control-Expose-Headers': [

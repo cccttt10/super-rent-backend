@@ -14,8 +14,7 @@ exports.initDb = () => {
         throw new Error(
             'Database connection is already established! Do not connect again!'
         );
-    }
-    else {
+    } else {
         _db = mysql.createConnection({
             host: process.env.DATABASE_IP,
             user: process.env.DATABASE_USER,
@@ -40,6 +39,5 @@ exports.getDb = () => {
         throw new Error(
             'Failed to get database. Please connect to database first by calling initDb!'
         );
-    }
-    else return _db;
+    } else return _db;
 };

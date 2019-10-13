@@ -11,8 +11,7 @@ exports.getAllCustomers = (req, res, next) => {
             if (err) {
                 log.error(err);
                 next(err);
-            }
-            else {
+            } else {
                 results = JSON.parse(JSON.stringify(results));
                 let customers = results;
                 const totalCount = customers.length;
@@ -27,8 +26,7 @@ exports.getAllCustomers = (req, res, next) => {
                     customers = dataHandler.paginate(customers, req);
                 if (req.query._sort && req.query._order)
                     customers = dataHandler.sort(customers, req);
-                res
-                    .status(200)
+                res.status(200)
                     .set({
                         'X-Total-Count': totalCount,
                         'Access-Control-Expose-Headers': [
@@ -50,16 +48,14 @@ exports.getCustomer = (req, res, next) => {
             if (err) {
                 log.error(err);
                 next(err);
-            }
-            else {
+            } else {
                 results = JSON.parse(JSON.stringify(results));
                 const customer = results[0];
                 if (customer.isClubMember === 0)
                     customer.isClubMember = 'no';
                 else if (customer.isClubMember === 1)
                     customer.isClubMember = 'yes';
-                res
-                    .status(200)
+                res.status(200)
                     .set({
                         'X-Total-Count': 1,
                         'Access-Control-Expose-Headers': [
@@ -74,13 +70,7 @@ exports.getCustomer = (req, res, next) => {
 
 exports.updateCustomer = (req, res, next) => {
     const id = req.params.id;
-    const {
-        name,
-        phone,
-        driversLicence,
-        points,
-        fees
-    } = req.body;
+    const { name, phone, driversLicence, points, fees } = req.body;
     let { isClubMember } = req.body;
     if (isClubMember === 'yes') isClubMember = true;
     else if (isClubMember === 'no') isClubMember = false;
@@ -100,12 +90,10 @@ exports.updateCustomer = (req, res, next) => {
             if (err) {
                 log.error(err);
                 next(err);
-            }
-            else {
+            } else {
                 results = JSON.parse(JSON.stringify(results));
                 const updatedCustomer = results[1][0];
-                res
-                    .status(200)
+                res.status(200)
                     .set({
                         'X-Total-Count': 1,
                         'Access-Control-Expose-Headers': [

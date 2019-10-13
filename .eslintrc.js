@@ -1,12 +1,12 @@
 module.exports = {
-    extends: [ 'eslint:recommended' ],
+    extends: ['eslint:recommended'],
     env: {
         node: true,
         es6: true
     },
     overrides: [
         {
-            files: [ 'util/log.js' ],
+            files: ['util/log.js'],
             rules: {
                 'no-console': 'off'
             }
@@ -16,6 +16,6 @@ module.exports = {
         'no-trailing-spaces': 'error',
         'eqeqeq': 'error',
         'no-console': 'warn',
-        'camelcase': 'warn',
+        'camelcase': 'warn'
     }
 };

@@ -10,8 +10,7 @@ exports.sort = (data, req) => {
     return data.sort((a, b) => {
         if (order === 'DESC') {
             return a[sortBy] > b[sortBy];
-        }
-        else if (order === 'ASC') {
+        } else if (order === 'ASC') {
             return a[sortBy] < b[sortBy];
         }
     });
