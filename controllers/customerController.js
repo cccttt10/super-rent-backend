@@ -23,6 +23,8 @@ exports.getAllCustomers = (req, res, next) => {
                 });
                 if (req.query._start && req.query._end)
                     data = dataHandler.paginate(data, req);
+                if (req.query._sort && req.query._order)
+                    data = dataHandler.sort(data, req);
                 res
                     .status(200)
                     .set({

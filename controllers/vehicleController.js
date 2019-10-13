@@ -16,6 +16,8 @@ exports.getAllVehicles = (req, res, next) => {
                 const totalCount = data.length;
                 if (req.query._start && req.query._end)
                     data = dataHandler.paginate(data, req);
+                if (req.query._sort && req.query._order)
+                    data = dataHandler.sort(data, req);
                 res
                     .status(200)
                     .set({
