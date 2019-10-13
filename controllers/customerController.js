@@ -12,6 +12,13 @@ exports.getAllCustomers = (req, res, next) => {
                 next(err);
             }
             else {
+                data = data.map(customer => {
+                    if (customer.isClubMember === 0)
+                        customer.isClubMember = 'no';
+                    else if (customer.isClubMember === 1)
+                        customer.isClubMember = 'yes';
+                    return customer;
+                });
                 res
                     .status(200)
                     .set({
