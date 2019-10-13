@@ -43,7 +43,7 @@ const importData = () => {
     connection.query(
         `    
             CREATE TABLE customer(
-            uuid VARCHAR(255) PRIMARY KEY,
+            id VARCHAR(255) PRIMARY KEY,
             phone VARCHAR(255) UNIQUE,
             name VARCHAR(255),
             address VARCHAR(255),
@@ -57,7 +57,7 @@ const importData = () => {
 
     for (const customer of customers) {
         const {
-            uuid,
+            id,
             phone,
             name,
             address,
@@ -68,8 +68,8 @@ const importData = () => {
         } = customer;
         connection.query(
             `
-                INSERT INTO customer(uuid, phone, name, address, driversLicence, isClubMember, points, fees)
-                VALUES("${uuid}", "${phone}", "${name}", "${address}", 
+                INSERT INTO customer(id, phone, name, address, driversLicence, isClubMember, points, fees)
+                VALUES("${id}", "${phone}", "${name}", "${address}", 
                     ${driversLicence}, ${isClubMember}, ${points}, ${fees})
             `,
             queryHandler.defaultCallBack
@@ -83,7 +83,7 @@ const importData = () => {
     connection.query(
         `    
             CREATE TABLE vehicle(
-            uuid VARCHAR(255) PRIMARY KEY,
+            id VARCHAR(255) PRIMARY KEY,
             licence INT UNIQUE,
             make VARCHAR(255),
             model VARCHAR(255),
@@ -97,7 +97,7 @@ const importData = () => {
 
     for (const vehicle of vehicles) {
         const {
-            uuid,
+            id,
             licence,
             make,
             model,
@@ -108,8 +108,8 @@ const importData = () => {
         } = vehicle;
         connection.query(
             `
-                INSERT INTO vehicle(uuid, licence, make, model, year, color, odometer, status)
-                VALUES("${uuid}", ${licence}, "${make}", "${model}", 
+                INSERT INTO vehicle(id, licence, make, model, year, color, odometer, status)
+                VALUES("${id}", ${licence}, "${make}", "${model}", 
                     ${year}, "${color}", ${odometer}, "${status}")
             `,
             queryHandler.defaultCallBack

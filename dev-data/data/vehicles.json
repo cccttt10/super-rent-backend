@@ -1,6 +1,6 @@
 [
     {
-        "uuid": "5da21f29701ead95262bc891",
+        "id": "5da21f29701ead95262bc891",
         "licence": 7023604,
         "make": "Volkswagen",
         "model": "model ss",
@@ -10,7 +10,7 @@
         "status": "available for sale"
     },
     {
-        "uuid": "5da21f290b08786d0c6e5e2b",
+        "id": "5da21f290b08786d0c6e5e2b",
         "licence": 3680695,
         "make": "Benz",
         "model": "model a",
@@ -20,7 +20,7 @@
         "status": "available for sale"
     },
     {
-        "uuid": "5da21f295ccdc77a2338473c",
+        "id": "5da21f295ccdc77a2338473c",
         "licence": 2233242,
         "make": "Toyota",
         "model": "model b",
@@ -30,7 +30,7 @@
         "status": "available for sale"
     },
     {
-        "uuid": "5da21f2941bc48ca2023a13a",
+        "id": "5da21f2941bc48ca2023a13a",
         "licence": 8869424,
         "make": "Toyota",
         "model": "model c",
@@ -40,7 +40,7 @@
         "status": "available for sale"
     },
     {
-        "uuid": "5da21f29a92c68faff0256fe",
+        "id": "5da21f29a92c68faff0256fe",
         "licence": 8891336,
         "make": "Benz",
         "model": "model a",
@@ -50,7 +50,7 @@
         "status": "rented"
     },
     {
-        "uuid": "5da21f29bd7794b9f32805f5",
+        "id": "5da21f29bd7794b9f32805f5",
         "licence": 1331259,
         "make": "Benz",
         "model": "model b",
@@ -60,7 +60,7 @@
         "status": "sold"
     },
     {
-        "uuid": "5da21f291d681a20920cb1e3",
+        "id": "5da21f291d681a20920cb1e3",
         "licence": 7423566,
         "make": "Mazda",
         "model": "model c",
@@ -70,7 +70,7 @@
         "status": "rented"
     },
     {
-        "uuid": "5da21f29dba696546675db15",
+        "id": "5da21f29dba696546675db15",
         "licence": 5100206,
         "make": "Benz",
         "model": "model a",
@@ -80,7 +80,7 @@
         "status": "available for sale"
     },
     {
-        "uuid": "5da21f2953cc527ba33951a7",
+        "id": "5da21f2953cc527ba33951a7",
         "licence": 3403442,
         "make": "Honda",
         "model": "model b",
@@ -90,7 +90,7 @@
         "status": "sold"
     },
     {
-        "uuid": "5da21f2927ee2be0b9ff80e7",
+        "id": "5da21f2927ee2be0b9ff80e7",
         "licence": 2411425,
         "make": "Mazda",
         "model": "model a",
@@ -100,7 +100,7 @@
         "status": "sold"
     },
     {
-        "uuid": "5da21f2992878ab3ef9f4e15",
+        "id": "5da21f2992878ab3ef9f4e15",
         "licence": 1439104,
         "make": "Ford",
         "model": "model b",
@@ -110,7 +110,7 @@
         "status": "rented"
     },
     {
-        "uuid": "5da21f292c0c21c2a6858dfe",
+        "id": "5da21f292c0c21c2a6858dfe",
         "licence": 4736972,
         "make": "Toyota",
         "model": "model c",
@@ -120,7 +120,7 @@
         "status": "available for sale"
     },
     {
-        "uuid": "5da21f297b1301bb12f4153b",
+        "id": "5da21f297b1301bb12f4153b",
         "licence": 4758674,
         "make": "Honda",
         "model": "model c",
@@ -130,7 +130,7 @@
         "status": "available for sale"
     },
     {
-        "uuid": "5da21f29583b912e884f97a0",
+        "id": "5da21f29583b912e884f97a0",
         "licence": 8878195,
         "make": "Mazda",
         "model": "model ss",
@@ -140,7 +140,7 @@
         "status": "rented"
     },
     {
-        "uuid": "5da21f298f9694f86fe88e4c",
+        "id": "5da21f298f9694f86fe88e4c",
         "licence": 6643374,
         "make": "Mazda",
         "model": "model ss",
@@ -150,7 +150,7 @@
         "status": "available for rent"
     },
     {
-        "uuid": "5da21f29217f1690b5e85ca0",
+        "id": "5da21f29217f1690b5e85ca0",
         "licence": 1102772,
         "make": "Toyota",
         "model": "model ss",
@@ -160,7 +160,7 @@
         "status": "available for sale"
     },
     {
-        "uuid": "5da21f2975ff226c0c001732",
+        "id": "5da21f2975ff226c0c001732",
         "licence": 1450462,
         "make": "Benz",
         "model": "model a",
@@ -170,7 +170,7 @@
         "status": "available for rent"
     },
     {
-        "uuid": "5da21f2938d8628828779923",
+        "id": "5da21f2938d8628828779923",
         "licence": 5166163,
         "make": "Mazda",
         "model": "model b",
@@ -180,7 +180,7 @@
         "status": "available for rent"
     },
     {
-        "uuid": "5da21f29262aeefb4126c676",
+        "id": "5da21f29262aeefb4126c676",
         "licence": 4041702,
         "make": "Benz",
         "model": "model b",
@@ -190,7 +190,7 @@
         "status": "rented"
     },
     {
-        "uuid": "5da21f29c8f25e2b69f3fc96",
+        "id": "5da21f29c8f25e2b69f3fc96",
         "licence": 9633151,
         "make": "BMW",
         "model": "model s",
@@ -200,7 +200,7 @@
         "status": "available for rent"
     },
     {
-        "uuid": "5da21f29ce2849291979c6ed",
+        "id": "5da21f29ce2849291979c6ed",
         "licence": 6236905,
         "make": "Honda",
         "model": "model a",
@@ -210,7 +210,7 @@
         "status": "sold"
     },
     {
-        "uuid": "5da21f29eaa2b2a48cc5fff7",
+        "id": "5da21f29eaa2b2a48cc5fff7",
         "licence": 8719022,
         "make": "Benz",
         "model": "model ss",
@@ -220,7 +220,7 @@
         "status": "available for sale"
     },
     {
-        "uuid": "5da21f298626dd0897538021",
+        "id": "5da21f298626dd0897538021",
         "licence": 5494089,
         "make": "Benz",
         "model": "model b",
@@ -230,7 +230,7 @@
         "status": "available for rent"
     },
     {
-        "uuid": "5da21f2924fe669880aeafaa",
+        "id": "5da21f2924fe669880aeafaa",
         "licence": 9172848,
         "make": "Mazda",
         "model": "model s",
@@ -240,7 +240,7 @@
         "status": "available for rent"
     },
     {
-        "uuid": "5da21f293c2d3af61d78dcc5",
+        "id": "5da21f293c2d3af61d78dcc5",
         "licence": 3577373,
         "make": "BMW",
         "model": "model b",
@@ -250,7 +250,7 @@
         "status": "rented"
     },
     {
-        "uuid": "5da21f29ad4bd707ab5f9ef4",
+        "id": "5da21f29ad4bd707ab5f9ef4",
         "licence": 2239339,
         "make": "Honda",
         "model": "model s",
@@ -260,7 +260,7 @@
         "status": "rented"
     },
     {
-        "uuid": "5da21f29844f0e765afaaa73",
+        "id": "5da21f29844f0e765afaaa73",
         "licence": 5259963,
         "make": "BMW",
         "model": "model s",
@@ -270,7 +270,7 @@
         "status": "available for rent"
     },
     {
-        "uuid": "5da21f2914b688f58b2b7e25",
+        "id": "5da21f2914b688f58b2b7e25",
         "licence": 8372349,
         "make": "Ford",
         "model": "model s",
@@ -280,7 +280,7 @@
         "status": "available for sale"
     },
     {
-        "uuid": "5da21f291789bddfbdb7843b",
+        "id": "5da21f291789bddfbdb7843b",
         "licence": 8147688,
         "make": "Mazda",
         "model": "model b",
@@ -290,7 +290,7 @@
         "status": "sold"
     },
     {
-        "uuid": "5da21f29063d822597cc1c34",
+        "id": "5da21f29063d822597cc1c34",
         "licence": 9741704,
         "make": "Toyota",
         "model": "model b",
@@ -300,7 +300,7 @@
         "status": "rented"
     },
     {
-        "uuid": "5da21f29229c7e3e8e35194f",
+        "id": "5da21f29229c7e3e8e35194f",
         "licence": 7908137,
         "make": "Benz",
         "model": "model c",
@@ -310,7 +310,7 @@
         "status": "available for sale"
     },
     {
-        "uuid": "5da21f290581b8f4d101b7b2",
+        "id": "5da21f290581b8f4d101b7b2",
         "licence": 7307159,
         "make": "BMW",
         "model": "model b",
@@ -320,7 +320,7 @@
         "status": "available for rent"
     },
     {
-        "uuid": "5da21f29bae4f70e7fefb5b6",
+        "id": "5da21f29bae4f70e7fefb5b6",
         "licence": 8418539,
         "make": "Honda",
         "model": "model a",
@@ -330,7 +330,7 @@
         "status": "rented"
     },
     {
-        "uuid": "5da21f2996fc0f1782e6e217",
+        "id": "5da21f2996fc0f1782e6e217",
         "licence": 3203175,
         "make": "Honda",
         "model": "model b",
@@ -340,7 +340,7 @@
         "status": "available for rent"
     },
     {
-        "uuid": "5da21f29cf327f4e4724b2b5",
+        "id": "5da21f29cf327f4e4724b2b5",
         "licence": 2059057,
         "make": "BMW",
         "model": "model c",
@@ -350,7 +350,7 @@
         "status": "sold"
     },
     {
-        "uuid": "5da21f29a19ec6636a3c654c",
+        "id": "5da21f29a19ec6636a3c654c",
         "licence": 7746398,
         "make": "Ford",
         "model": "model c",
@@ -360,7 +360,7 @@
         "status": "rented"
     },
     {
-        "uuid": "5da21f29120a33aec64c305d",
+        "id": "5da21f29120a33aec64c305d",
         "licence": 1989780,
         "make": "Benz",
         "model": "model c",
@@ -370,7 +370,7 @@
         "status": "sold"
     },
     {
-        "uuid": "5da21f293f702bdbbb81277a",
+        "id": "5da21f293f702bdbbb81277a",
         "licence": 7040960,
         "make": "Mazda",
         "model": "model ss",
@@ -380,7 +380,7 @@
         "status": "sold"
     },
     {
-        "uuid": "5da21f298bc3617a03e6d401",
+        "id": "5da21f298bc3617a03e6d401",
         "licence": 5274824,
         "make": "Benz",
         "model": "model ss",
@@ -390,7 +390,7 @@
         "status": "available for sale"
     },
     {
-        "uuid": "5da21f29b44666bc0986486e",
+        "id": "5da21f29b44666bc0986486e",
         "licence": 2806106,
         "make": "BMW",
         "model": "model c",
@@ -400,7 +400,7 @@
         "status": "available for rent"
     },
     {
-        "uuid": "5da21f29c5d805ce2bfa94f6",
+        "id": "5da21f29c5d805ce2bfa94f6",
         "licence": 8255227,
         "make": "Ford",
         "model": "model ss",
@@ -410,7 +410,7 @@
         "status": "available for rent"
     },
     {
-        "uuid": "5da21f29c3ca51326eaa6fe7",
+        "id": "5da21f29c3ca51326eaa6fe7",
         "licence": 1471216,
         "make": "Volkswagen",
         "model": "model ss",
@@ -420,7 +420,7 @@
         "status": "sold"
     },
     {
-        "uuid": "5da21f29c6d5f22e53e8b50d",
+        "id": "5da21f29c6d5f22e53e8b50d",
         "licence": 7670601,
         "make": "Honda",
         "model": "model a",
@@ -430,7 +430,7 @@
         "status": "rented"
     },
     {
-        "uuid": "5da21f29eb40c4dcc5bedbdc",
+        "id": "5da21f29eb40c4dcc5bedbdc",
         "licence": 1567510,
         "make": "Mazda",
         "model": "model a",
@@ -440,7 +440,7 @@
         "status": "available for sale"
     },
     {
-        "uuid": "5da21f294bcafdc999075d9a",
+        "id": "5da21f294bcafdc999075d9a",
         "licence": 9057873,
         "make": "Benz",
         "model": "model s",

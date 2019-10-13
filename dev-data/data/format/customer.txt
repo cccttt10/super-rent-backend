@@ -1,7 +1,7 @@
 [
   '{{repeat(31, 31)}}',
   {
-    uuid: '{{objectId()}}',
+    id: '{{objectId()}}',
     phone: '+1 {{phone()}}',
     name: '{{firstName()}} {{surname()}}',
     address: '{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}',

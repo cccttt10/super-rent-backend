@@ -1,7 +1,7 @@
 [
   '{{repeat(45, 45)}}',
   {
-    uuid: '{{objectId()}}',
+    id: '{{objectId()}}',
 
  
     licence: '{{integer(1000000, 9999999)}}',
