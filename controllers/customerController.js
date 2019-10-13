@@ -49,7 +49,13 @@ exports.getCustomer = (req, res, next) => {
                 log.error(err);
                 next(err);
             }
-            else
+            else {
+                const customer = data[0];
+                console.log(data);
+                if (customer.isClubMember === 0)
+                    customer.isClubMember = 'no';
+                else if (customer.isClubMember === 1)
+                    customer.isClubMember = 'yes';
                 res
                     .status(200)
                     .set({
@@ -58,7 +64,54 @@ exports.getCustomer = (req, res, next) => {
                             'X-Total-Count'
                         ]
                     })
-                    .json(data[0]);
+                    .json(customer);
+            }
+        }
+    );
+};
+
+exports.updateCustomer = (req, res, next) => {
+    const id = req.params.id;
+    let {
+        name,
+        phone,
+        driversLicence,
+        isClubMember,
+        points,
+        fees
+    } = req.body;
+    if (isClubMember === 'yes') isClubMember = true;
+    else if (isClubMember === 'no') isClubMember = false;
+    _db.query(
+        `
+            UPDATE customer
+            SET name = "${name}",
+                phone = "${phone}",
+                driversLicence = ${driversLicence},
+                isClubMember = ${isClubMember},
+                points = ${points},
+                fees = ${fees}
+                WHERE id = "${id}";
+            SELECT * FROM customer WHERE id = "${id}";
+            `,
+        (err, results, fields) => {
+            if (err) {
+                log.error(err);
+                next(err);
+            }
+            else {
+                results = JSON.parse(JSON.stringify(results));
+                const updatedCustomer = results[1][0];
+                res
+                    .status(200)
+                    .set({
+                        'X-Total-Count': 1,
+                        'Access-Control-Expose-Headers': [
+                            'X-Total-Count'
+                        ]
+                    })
+                    .json(updatedCustomer);
+            }
         }
     );
 };

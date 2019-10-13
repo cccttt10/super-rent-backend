@@ -4,7 +4,8 @@ const cors = require('cors');
 const customerRoutes = require('./routes/customerRoutes');
 const vehicleRoutes = require('./routes/vehicleRoutes');
 
-app.use(cors());
+app.use(cors()); // Allow cross origin access
+app.use(express.json()); // Body parser
 app.use('/customers', customerRoutes);
 app.use('/vehicles', vehicleRoutes);
 

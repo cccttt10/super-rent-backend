@@ -6,11 +6,11 @@ const queryHandler = require('../util/queryHandler');
 
 dotenv.config({ path: './config.env' });
 
-console.log('this isok');
 const connection = mysql.createConnection({
     host: process.env.DATABASE_IP,
     user: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD
+    password: process.env.DATABASE_PASSWORD,
+    multipleStatements: true
 });
 
 const connect = () => {
@@ -46,7 +46,6 @@ const importData = () => {
             id VARCHAR(255) PRIMARY KEY,
             phone VARCHAR(255) UNIQUE,
             name VARCHAR(255),
-            address VARCHAR(255),
             driversLicence INT UNIQUE,
             isClubMember BOOLEAN,
             points INT,
@@ -60,7 +59,6 @@ const importData = () => {
             id,
             phone,
             name,
-            address,
             driversLicence,
             isClubMember,
             points,
@@ -68,8 +66,8 @@ const importData = () => {
         } = customer;
         connection.query(
             `
-                INSERT INTO customer(id, phone, name, address, driversLicence, isClubMember, points, fees)
-                VALUES("${id}", "${phone}", "${name}", "${address}", 
+                INSERT INTO customer(id, phone, name, driversLicence, isClubMember, points, fees)
+                VALUES("${id}", "${phone}", "${name}",
                     ${driversLicence}, ${isClubMember}, ${points}, ${fees})
             `,
             queryHandler.defaultCallBack

@@ -19,7 +19,8 @@ exports.initDb = () => {
         _db = mysql.createConnection({
             host: process.env.DATABASE_IP,
             user: process.env.DATABASE_USER,
-            password: process.env.DATABASE_PASSWORD
+            password: process.env.DATABASE_PASSWORD,
+            multipleStatements: true
         });
         _db.query(
             `

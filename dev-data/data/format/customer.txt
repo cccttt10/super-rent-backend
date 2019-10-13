@@ -4,7 +4,6 @@
     id: '{{objectId()}}',
     phone: '+1 {{phone()}}',
     name: '{{firstName()}} {{surname()}}',
-    address: '{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}',
     driversLicence: '{{integer(1000000, 9999999)}}',
     isClubMember: '{{bool()}}',
     points: function() {
