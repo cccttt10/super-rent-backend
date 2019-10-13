@@ -7,8 +7,8 @@ exports.getAllCustomers = async (req, res, next) => {
     let customers = results[0];
     const totalCount = customers.length;
     customers = customers.map(customer => {
-        if (customer.isClubMember === 0) customer.isClubMember = 'no';
-        if (customer.isClubMember === 1) customer.isClubMember = 'yes';
+        if (customer.isClubMember === 0) customer.isClubMember = false;
+        if (customer.isClubMember === 1) customer.isClubMember = true;
         return customer;
     });
     if (req.query._start && req.query._end)
@@ -29,8 +29,8 @@ exports.getCustomer = async (req, res, next) => {
     );
     results = JSON.parse(JSON.stringify(results));
     const customer = results[0][0];
-    if (customer.isClubMember === 0) customer.isClubMember = 'no';
-    if (customer.isClubMember === 1) customer.isClubMember = 'yes';
+    if (customer.isClubMember === 0) customer.isClubMember = false;
+    if (customer.isClubMember === 1) customer.isClubMember = true;
     res.status(200)
         .set({
             'X-Total-Count': 1,
