@@ -13,3 +13,9 @@ Once your environment is configured you need to further prepare the project's to
 1. `npm install` to download the project's dependencies.
 
 2. `npm run dev` to start the server in development mode.
+
+## Helpful links
+
+1. [Quick intro to Node.js](https://nodejs.dev/introduction-to-nodejs)
+
+2. NPM package [mysql2](https://www.npmjs.com/package/mysql2) allows us to connect our Node backend with MySQL database. 
