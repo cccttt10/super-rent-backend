@@ -1,5 +1,6 @@
 const _db = require('../db').getDb();
 const dataHandler = require('../util/dataHandler');
+const uuid = require('uuid/v4');
 
 exports.getAllCustomers = async (req, res, next) => {
     let results = await _db.query(`SELECT * FROM customers;`);
@@ -41,10 +42,7 @@ exports.getCustomer = async (req, res, next) => {
 
 exports.updateCustomer = async (req, res, next) => {
     const id = req.params.id;
-    const { name, phone, driversLicence, points, fees } = req.body;
-    let { isClubMember } = req.body;
-    if (isClubMember === 'yes') isClubMember = true;
-    else if (isClubMember === 'no') isClubMember = false;
+    const { name, phone, driversLicence, isClubMember, points, fees } = req.body;
     await _db.query(
         `
             UPDATE customers
@@ -72,4 +70,19 @@ exports.deleteCustomer = async (req, res, next) => {
     const id = req.params.id;
     await _db.query(`DELETE FROM customers WHERE id ='${id}'`);
     res.status(204).json(null);
+};
+
+exports.createCustomer = async (req, res, next) => {
+    const id = uuid();
+    const { phone, name, driversLicence, isClubMember, points, fees } = req.body;
+    let results = await _db.query(
+        `
+            INSERT INTO customers(id, phone, name, driversLicence, isClubMember, points, fees)
+            VALUES("${id}", "${phone}", "${name}", ${driversLicence}, ${isClubMember}, ${points}, ${fees});
+        `
+    );
+    results = await _db.query(`SELECT * FROM customers WHERE id = '${id}';`);
+    results = JSON.parse(JSON.stringify(results));
+    const createdCustomer = results[0][0];
+    res.status(201).json(createdCustomer);
 };
