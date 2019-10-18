@@ -1,5 +1,6 @@
 const _db = require('../db').getDb();
 const dataHandler = require('../util/dataHandler');
+const uuid = require('uuid/v4');
 
 exports.getAllVehicles = async (req, res, next) => {
     let results = await _db.query(`SELECT * FROM vehicles`);
@@ -64,4 +65,19 @@ exports.deleteVehicle = async (req, res, next) => {
     const id = req.params.id;
     await _db.query(`DELETE FROM vehicles WHERE id ='${id}'`);
     res.status(204).json(null);
+};
+
+exports.createVehicle = async (req, res, next) => {
+    const id = uuid();
+    const { licence, make, model, year, color, odometer, status } = req.body;
+    let results = await _db.query(
+        `
+            INSERT INTO vehicles(id, licence, make, model, year, color, odometer, status)
+            VALUES("${id}", ${licence}, "${make}", "${model}", ${year}, "${color}", ${odometer}, "${status}");
+        `
+    );
+    results = await _db.query(`SELECT * FROM vehicles WHERE id = '${id}';`);
+    results = JSON.parse(JSON.stringify(results));
+    const createdVehicle = results[0][0];
+    res.status(201).json(createdVehicle);
 };
