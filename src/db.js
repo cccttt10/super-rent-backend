@@ -16,7 +16,7 @@ exports.initDb = async () => {
             password: process.env.DATABASE_PASSWORD,
             multipleStatements: true
         });
-        await _db.query(`USE super_rent;`);
+        await _db.query(`USE superRentDatabase;`);
         log.success('👌 DB connected');
     }
 };

@@ -2,7 +2,7 @@ const _db = require('../db').getDb();
 const dataHandler = require('../util/dataHandler');
 
 exports.getAllCustomers = async (req, res, next) => {
-    let results = await _db.query(`SELECT * FROM customer;`);
+    let results = await _db.query(`SELECT * FROM customers;`);
     results = JSON.parse(JSON.stringify(results));
     let customers = results[0];
     const totalCount = customers.length;
@@ -25,7 +25,7 @@ exports.getAllCustomers = async (req, res, next) => {
 
 exports.getCustomer = async (req, res, next) => {
     let results = await _db.query(
-        `SELECT * FROM customer where id = '${req.params.id}';`
+        `SELECT * FROM customers where id = '${req.params.id}';`
     );
     results = JSON.parse(JSON.stringify(results));
     const customer = results[0][0];
@@ -47,7 +47,7 @@ exports.updateCustomer = async (req, res, next) => {
     else if (isClubMember === 'no') isClubMember = false;
     await _db.query(
         `
-            UPDATE customer
+            UPDATE customers
             SET name = '${name}',
                 phone = '${phone}',
                 driversLicence = ${driversLicence},
@@ -57,7 +57,7 @@ exports.updateCustomer = async (req, res, next) => {
                 WHERE id = '${id}';
         `
     );
-    let results = await _db.query(`SELECT * FROM customer WHERE id = '${id}';`);
+    let results = await _db.query(`SELECT * FROM customers WHERE id = '${id}';`);
     results = JSON.parse(JSON.stringify(results));
     const updatedCustomer = results[0][0];
     res.status(200)
@@ -70,6 +70,6 @@ exports.updateCustomer = async (req, res, next) => {
 
 exports.deleteCustomer = async (req, res, next) => {
     const id = req.params.id;
-    await _db.query(`DELETE FROM customer WHERE id ='${id}'`);
+    await _db.query(`DELETE FROM customers WHERE id ='${id}'`);
     res.status(204).json(null);
 };

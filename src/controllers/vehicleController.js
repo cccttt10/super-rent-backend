@@ -2,7 +2,7 @@ const _db = require('../db').getDb();
 const dataHandler = require('../util/dataHandler');
 
 exports.getAllVehicles = async (req, res, next) => {
-    let results = await _db.query(`SELECT * FROM vehicle`);
+    let results = await _db.query(`SELECT * FROM vehicles`);
     results = JSON.parse(JSON.stringify(results));
     let vehicles = results[0];
     const totalCount = vehicles.length;
@@ -20,7 +20,7 @@ exports.getAllVehicles = async (req, res, next) => {
 
 exports.getVehicle = async (req, res, next) => {
     let results = await _db.query(
-        `SELECT * FROM vehicle where id = "${req.params.id}";`
+        `SELECT * FROM vehicles where id = "${req.params.id}";`
     );
     results = JSON.parse(JSON.stringify(results));
     const vehicle = results[0][0];
@@ -38,7 +38,7 @@ exports.updateVehicle = async (req, res, next) => {
 
     await _db.query(
         `
-            UPDATE vehicle
+            UPDATE vehicles
             SET licence = ${licence},
                 make = '${make}',
                 model = '${model}',
@@ -49,7 +49,7 @@ exports.updateVehicle = async (req, res, next) => {
                 WHERE id = '${id}';
         `
     );
-    let results = await _db.query(`SELECT * FROM vehicle WHERE id = '${id}';`);
+    let results = await _db.query(`SELECT * FROM vehicles WHERE id = '${id}';`);
     results = JSON.parse(JSON.stringify(results));
     const updatedVehicle = results[0][0];
     res.status(200)
@@ -62,6 +62,6 @@ exports.updateVehicle = async (req, res, next) => {
 
 exports.deleteVehicle = async (req, res, next) => {
     const id = req.params.id;
-    await _db.query(`DELETE FROM vehicle WHERE id ='${id}'`);
+    await _db.query(`DELETE FROM vehicles WHERE id ='${id}'`);
     res.status(204).json(null);
 };

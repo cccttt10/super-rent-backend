@@ -13,7 +13,7 @@ const connect = async () => {
         password: process.env.DATABASE_PASSWORD,
         multipleStatements: true
     });
-    await connection.query(`USE super_rent`);
+    await connection.query(`USE superRentDatabase`);
     await connection.query(`SELECT DATABASE()`);
     log.success('👌 database connection successful!');
 };
@@ -24,7 +24,7 @@ const importData = async () => {
     );
     await connection.query(
         `    
-            CREATE TABLE customer(
+            CREATE TABLE customers(
             id VARCHAR(255) PRIMARY KEY,
             phone VARCHAR(255) UNIQUE,
             name VARCHAR(255),
@@ -34,7 +34,7 @@ const importData = async () => {
             fees DOUBLE)
         `
     );
-    log.success('👌 created customer table!');
+    log.success('👌 created customers table!');
 
     let insertCustomersQuery = '';
     for (const customer of customers) {
@@ -48,7 +48,7 @@ const importData = async () => {
             fees
         } = customer;
         insertCustomersQuery += `
-            INSERT INTO customer(id, phone, name, driversLicence, isClubMember, points, fees)
+            INSERT INTO customers(id, phone, name, driversLicence, isClubMember, points, fees)
             VALUES("${id}", "${phone}", "${name}",
                 ${driversLicence}, ${isClubMember}, ${points}, ${fees});
         `;
@@ -61,7 +61,7 @@ const importData = async () => {
     );
     await connection.query(
         `    
-            CREATE TABLE vehicle(
+            CREATE TABLE vehicles(
             id VARCHAR(255) PRIMARY KEY,
             licence INT UNIQUE,
             make VARCHAR(255),
@@ -72,13 +72,13 @@ const importData = async () => {
             status ENUM("available for rent", "available for sale", "sold", "rented"))
         `
     );
-    log.success('👌 created vehicle table!');
+    log.success('👌 created vehicles table!');
 
     let insertVehiclesQuery = '';
     for (const vehicle of vehicles) {
         const { id, licence, make, model, year, color, odometer, status } = vehicle;
         insertVehiclesQuery += `
-            INSERT INTO vehicle(id, licence, make, model, year, color, odometer, status)
+            INSERT INTO vehicles(id, licence, make, model, year, color, odometer, status)
             VALUES("${id}", ${licence}, "${make}", "${model}", 
                 ${year}, "${color}", ${odometer}, "${status}");
         `;
@@ -91,8 +91,8 @@ const importData = async () => {
 };
 
 const deleteData = async () => {
-    await connection.query(`DROP TABLE IF EXISTS customer`);
-    await connection.query(`DROP TABLE IF EXISTS vehicle`);
+    await connection.query(`DROP TABLE IF EXISTS customers`);
+    await connection.query(`DROP TABLE IF EXISTS vehicles`);
     log.success('👌 deleted all data from database, done');
     process.exit(0);
 };
