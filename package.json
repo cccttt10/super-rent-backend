@@ -15,7 +15,7 @@
         "lint": "eslint . --ext .js",
         "lint:fix": "eslint . --ext .js --fix",
         "pretty": "prettier --config ./.prettierrc.json --write \"./**/*.js\" && npm run lint:fix",
-        "hook": "npm run pretty && npm run lint"
+        "check": "prettier --config ./.prettierrc.json --check \"./**/*.js\" && npm run lint"
     },
     "repository": {
         "type": "git",
@@ -40,7 +40,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm run hook"
+            "pre-commit": "npm run check"
         }
     }
 }
