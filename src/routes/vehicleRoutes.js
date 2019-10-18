@@ -3,7 +3,10 @@ const vehicleController = require('../controllers/vehicleController');
 
 const router = express.Router();
 
-router.route('/').get(vehicleController.getAllVehicles);
+router
+    .route('/')
+    .get(vehicleController.getAllVehicles)
+    .post(vehicleController.createVehicle);
 router
     .route('/:id')
     .get(vehicleController.getVehicle)
