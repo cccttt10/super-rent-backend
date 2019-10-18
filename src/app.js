@@ -3,10 +3,9 @@ const app = express();
 const cors = require('cors');
 const customerRoutes = require('./routes/customerRoutes');
 const vehicleRoutes = require('./routes/vehicleRoutes');
-const log = require('./util/log');
+
 const handleOptionsRequest = (req, res, next) => {
     if (req.method === 'OPTIONS') {
-        log.success('options');
         const headers = {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE, OPTIONS',
@@ -19,6 +18,7 @@ const handleOptionsRequest = (req, res, next) => {
         res.end();
     } else next();
 };
+
 app.use(handleOptionsRequest);
 app.use(cors()); // Allow cross origin access
 app.use(express.json()); // Body parser
