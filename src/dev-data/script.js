@@ -18,20 +18,40 @@ const connect = async () => {
     log.success('👌 database connection successful!');
 };
 
-const importData = async () => {
+const importVehicleTypes = async () => {
+    const vehicleTypes = JSON.parse(
+        fs.readFileSync('src/dev-data/data/vehicleTypes.json', 'utf8')
+    );
+    await connection.query(
+        `
+            CREATE TABLE vehicleTypes(
+            vehicleTypeName VARCHAR(50) PRIMARY KEY,
+            dayRate INT UNSIGNED NOT NULL);
+        `
+    );
+    log.success('👌 created vehicleTypes table!');
+    let insertVehicleTypesQuery = '';
+    for (const vehicleType of vehicleTypes) {
+        const { vehicleTypeName, dayRate } = vehicleType;
+        insertVehicleTypesQuery += `
+            INSERT INTO vehicleTypes(vehicleTypeName, dayRate)
+            VALUES("${vehicleTypeName}", ${dayRate});
+        `;
+    }
+    await connection.query(insertVehicleTypesQuery);
+    log.success('👌 imported vehicleTypes data!');
+}
+
+const importCustomers = async () => {
     const customers = JSON.parse(
         fs.readFileSync('src/dev-data/data/customers.json', 'utf8')
     );
     await connection.query(
         `    
             CREATE TABLE customers(
-            id VARCHAR(255) PRIMARY KEY,
-            phone VARCHAR(255) UNIQUE,
-            name VARCHAR(255),
-            driversLicence INT UNIQUE,
-            isClubMember BOOLEAN,
-            points INT,
-            fees DOUBLE)
+            driversLicence VARCHAR(20) PRIMARY KEY,
+            phone VARCHAR(50) NOT NULL,
+            name VARCHAR(50) NOT NULL);
         `
     );
     log.success('👌 created customers table!');
@@ -39,60 +59,66 @@ const importData = async () => {
     let insertCustomersQuery = '';
     for (const customer of customers) {
         const {
-            id,
+            driversLicence,
             phone,
             name,
-            driversLicence,
-            isClubMember,
-            points,
-            fees
         } = customer;
         insertCustomersQuery += `
-            INSERT INTO customers(id, phone, name, driversLicence, isClubMember, points, fees)
-            VALUES("${id}", "${phone}", "${name}",
-                ${driversLicence}, ${isClubMember}, ${points}, ${fees});
+            INSERT INTO customers(driversLicence, phone, name)
+            VALUES("${driversLicence}", "${phone}", "${name}");
         `;
     }
     await connection.query(insertCustomersQuery);
     log.success('👌 imported customers data!');
+}
 
+const importVehicles = async () => {
     const vehicles = JSON.parse(
         fs.readFileSync('src/dev-data/data/vehicles.json', 'utf8')
     );
     await connection.query(
         `    
             CREATE TABLE vehicles(
-            id VARCHAR(255) PRIMARY KEY,
-            licence INT UNIQUE,
-            make VARCHAR(255),
-            model VARCHAR(255),
-            year INT,
-            color VARCHAR(255),
-            odometer INT,
-            status ENUM("available for rent", "available for sale", "sold", "rented"))
+            licence VARCHAR(50) PRIMARY KEY,
+            make VARCHAR(50),
+            model VARCHAR(50),
+            year YEAR,
+            color VARCHAR(50),
+            status ENUM("rented", "maintenance", "available") NOT NULL,
+            vehicleTypeName VARCHAR(50) NOT NULL,
+            location VARCHAR(50) NOT NULL,
+            city VARCHAR(50) NOT NULL,
+            FOREIGN KEY (vehicleTypeName) REFERENCES vehicleTypes(vehicleTypeName));
         `
     );
     log.success('👌 created vehicles table!');
 
     let insertVehiclesQuery = '';
     for (const vehicle of vehicles) {
-        const { id, licence, make, model, year, color, odometer, status } = vehicle;
+        const { licence, make, model, year, color, status, vehicleTypeName, location, city } = vehicle;
         insertVehiclesQuery += `
-            INSERT INTO vehicles(id, licence, make, model, year, color, odometer, status)
-            VALUES("${id}", ${licence}, "${make}", "${model}", 
-                ${year}, "${color}", ${odometer}, "${status}");
+            INSERT INTO vehicles(licence, make, model, year, color, 
+                                 status, vehicleTypeName, location, city)
+            VALUES("${licence}", "${make}", "${model}", ${year}, "${color}", 
+                  "${status}", "${vehicleTypeName}", "${location}", "${city}");
         `;
     }
-
     await connection.query(insertVehiclesQuery);
     log.success('👌 imported vehicles data!');
+}
+
+const importData = async () => {
+    await importVehicleTypes();
+    await importCustomers();
+    await importVehicles();
     log.success('👌 imported all data to database, done');
     process.exit(0);
 };
 
 const deleteData = async () => {
-    await connection.query(`DROP TABLE IF EXISTS customers`);
     await connection.query(`DROP TABLE IF EXISTS vehicles`);
+    await connection.query(`DROP TABLE IF EXISTS vehicleTypes`);
+    await connection.query(`DROP TABLE IF EXISTS customers`);
     log.success('👌 deleted all data from database, done');
     process.exit(0);
 };

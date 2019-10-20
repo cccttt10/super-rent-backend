@@ -1,25 +1,14 @@
 [
-  '{{repeat(45, 45)}}',
+  '{{repeat(30, 60)}}',
   {
-    id: '{{objectId()}}',
-
- 
     licence: '{{integer(1000000, 9999999)}}',
-    
-     make: '{{random("BMW", "Benz", "Honda", "Toyota",  "Mazda", "Ford", "Volkswagen")}}',
-    
-    
-     model: '{{random("model a", "model b", "model c", "model s",  "model ss")}}',
+    make: '{{random("BMW", "Benz", "Honda", "Toyota",  "Mazda", "Ford", "Volkswagen")}}',
+    model: '{{random("A-Class", "B-Class", "S-ClASS", "X-Class")}}',
     year:'{{integer(1990, 2019)}}',
-    
-     color: '{{random("blue", "brown", "green")}}',
-    odometer: function() {
-      var rand =  Math.floor(Math.random() * (100000 - 0 + 1)) + 0
-      return rand;
-    },
-    status: '{{random("available for rent", "available for sale", "rented", "sold")}}'
-    
-   
-   
+    color: '{{random("blue", "brown", "green", "pink", "red", "yellow")}}',
+    status: '{{random("rented", "maintenance", "available")}}',
+    vehicleTypeName: '{{random("Compact", "Mid-size", "Standard", "Full-size", "SUV", "Truck")}}',
+    location: '{{random("Central Ave.", "East St.", "West Rd.", "Sunshine St.", "Downtown", "Waterfront")}}',
+    city: '{{random("Vancouver", "Calgary", "Toronto", "Edmonton", "Victoria", "Waterloo", "Montreal", "Ottawa", "London")}}'
   }   
 ]

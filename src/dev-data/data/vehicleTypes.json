@@ -1,0 +1,26 @@
+[
+    {
+        "vehicleTypeName": "Compact",
+        "dayRate": 10
+    },
+    {
+        "vehicleTypeName": "Mid-size",
+        "dayRate": 25
+    },
+    {
+        "vehicleTypeName": "Standard",
+        "dayRate": 30
+    },
+    {
+        "vehicleTypeName": "Full-size",
+        "dayRate": 50
+    },
+    {
+        "vehicleTypeName": "SUV",
+        "dayRate": 88
+    },
+    {
+        "vehicleTypeName": "Truck",
+        "dayRate": 119
+    }
+]

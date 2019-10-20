@@ -1,23 +1,9 @@
 [
-  '{{repeat(31, 31)}}',
+  '{{repeat(30, 60)}}',
   {
-    id: '{{objectId()}}',
-    phone: '+1 {{phone()}}',
-    name: '{{firstName()}} {{surname()}}',
-    driversLicence: '{{integer(1000000, 9999999)}}',
-    isClubMember: '{{bool()}}',
-    points: function() {
-      var max = 1000;
-      var min = 0;   
-      var rand =  Math.floor(Math.random() * (max - min + 1)) + min
-      return this.isClubMember ? rand : 0;
-    },
-    fees: function() {
-      var max = 1000.00;
-      var min = 0.00;
-      var fees =  this.isClubMember ? (Math.random() * (max - min + 1)) + min : 0;
-      fees = parseFloat(fees.toFixed(2));
-      return fees;
-    }
+    
+     driversLicence: '{{integer(1000000, 9999999)}}',
+     phone: '{{integer(3333333333, 9999999999)}}',
+     name: '{{firstName()}} {{surname()}}'
   }   
 ]
