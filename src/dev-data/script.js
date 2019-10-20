@@ -18,18 +18,21 @@ const connect = async () => {
     log.success('👌 database connection successful!');
 };
 
+const createTables = async () => {
+    const schemasString = fs.readFileSync('src/dev-data/createTables.sql', 'utf-8');
+    const schemas = schemasString
+        .split(';')
+        .filter(schema => typeof schema === 'string' && schema.length > 0);
+    for (const schema of schemas) {
+        await connection.query(schema);
+    }
+    log.success('👌 created tables!');
+};
+
 const importVehicleTypes = async () => {
     const vehicleTypes = JSON.parse(
         fs.readFileSync('src/dev-data/data/vehicleTypes.json', 'utf8')
     );
-    await connection.query(
-        `
-            CREATE TABLE vehicleTypes(
-            vehicleTypeName VARCHAR(50) PRIMARY KEY,
-            dayRate INT UNSIGNED NOT NULL);
-        `
-    );
-    log.success('👌 created vehicleTypes table!');
     let insertVehicleTypesQuery = '';
     for (const vehicleType of vehicleTypes) {
         const { vehicleTypeName, dayRate } = vehicleType;
@@ -46,16 +49,6 @@ const importCustomers = async () => {
     const customers = JSON.parse(
         fs.readFileSync('src/dev-data/data/customers.json', 'utf8')
     );
-    await connection.query(
-        `    
-            CREATE TABLE customers(
-            driversLicence VARCHAR(20) PRIMARY KEY,
-            phone VARCHAR(50) NOT NULL,
-            name VARCHAR(50) NOT NULL);
-        `
-    );
-    log.success('👌 created customers table!');
-
     let insertCustomersQuery = '';
     for (const customer of customers) {
         const { driversLicence, phone, name } = customer;
@@ -72,23 +65,6 @@ const importVehicles = async () => {
     const vehicles = JSON.parse(
         fs.readFileSync('src/dev-data/data/vehicles.json', 'utf8')
     );
-    await connection.query(
-        `    
-            CREATE TABLE vehicles(
-            licence VARCHAR(50) PRIMARY KEY,
-            make VARCHAR(50),
-            model VARCHAR(50),
-            year YEAR,
-            color VARCHAR(50),
-            status ENUM("rented", "maintenance", "available") NOT NULL,
-            vehicleTypeName VARCHAR(50) NOT NULL,
-            location VARCHAR(50) NOT NULL,
-            city VARCHAR(50) NOT NULL,
-            FOREIGN KEY (vehicleTypeName) REFERENCES vehicleTypes(vehicleTypeName));
-        `
-    );
-    log.success('👌 created vehicles table!');
-
     let insertVehiclesQuery = '';
     for (const vehicle of vehicles) {
         const {
@@ -114,6 +90,7 @@ const importVehicles = async () => {
 };
 
 const importData = async () => {
+    await createTables();
     await importVehicleTypes();
     await importCustomers();
     await importVehicles();
@@ -121,11 +98,15 @@ const importData = async () => {
     process.exit(0);
 };
 
-const deleteData = async () => {
-    await connection.query(`DROP TABLE IF EXISTS vehicles`);
-    await connection.query(`DROP TABLE IF EXISTS vehicleTypes`);
-    await connection.query(`DROP TABLE IF EXISTS customers`);
-    log.success('👌 deleted all data from database, done');
+const dropTables = async () => {
+    const queriesString = fs.readFileSync('src/dev-data/dropTables.sql', 'utf-8');
+    const queries = queriesString
+        .split(';')
+        .filter(query => typeof query === 'string' && query.length > 0);
+    for (const query of queries) {
+        await connection.query(query);
+    }
+    log.success('👌 dropped all tables and deleted all data!');
     process.exit(0);
 };
 
@@ -135,7 +116,7 @@ const main = async () => {
         if (process.argv[2] === '--import') {
             await importData();
         } else if (process.argv[2] === '--delete') {
-            await deleteData();
+            await dropTables();
         }
     } catch (err) {
         log.error(err);

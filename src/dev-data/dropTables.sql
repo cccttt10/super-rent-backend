@@ -1,0 +1,13 @@
+ALTER TABLE vehicles DROP FOREIGN KEY vehicle_vehicleType;
+ALTER TABLE reservations DROP FOREIGN KEY reservation_vehicleType;
+ALTER TABLE reservations DROP FOREIGN KEY reservation_customer;
+ALTER TABLE rents DROP FOREIGN KEY rent_vehicle;
+ALTER TABLE rents DROP FOREIGN KEY rent_customer;
+ALTER TABLE rents DROP FOREIGN KEY rent_reservation;
+ALTER TABLE returns DROP FOREIGN KEY return_rent;
+DROP TABLE IF EXISTS vehicleTypes;
+DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS vehicles;
+DROP TABLE IF EXISTS reservations;
+DROP TABLE IF EXISTS rents;
+DROP TABLE IF EXISTS returns;
