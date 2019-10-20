@@ -5,6 +5,22 @@ exports.getAllVehicles = async (req, res, next) => {
     let query =
         'SELECT * FROM vehicles INNER JOIN vehicleTypes USING (vehicleTypeName)';
 
+    // prepare query: filtering
+    if (req.query.city && !req.query.vehicleTypeName) {
+        const city = req.query.city;
+        query += ` WHERE city = "${city}"`;
+    }
+
+    if (!req.query.city && req.query.vehicleTypeName) {
+        const vehicleTypeName = req.query.vehicleTypeName;
+        query += ` WHERE vehicleTypeName = "${vehicleTypeName}"`;
+    }
+
+    if (req.query.city && req.query.vehicleTypeName) {
+        const { city, vehicleTypeName } = req.query;
+        query += ` WHERE city = "${city}" AND vehicleTypeName = "${vehicleTypeName}"`;
+    }
+
     // prepare query: sorting
     if (req.query._sort && req.query._order) {
         const sort = req.query._sort === 'id' ? 'licence' : req.query._sort;
