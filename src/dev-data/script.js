@@ -40,7 +40,7 @@ const importVehicleTypes = async () => {
     }
     await connection.query(insertVehicleTypesQuery);
     log.success('👌 imported vehicleTypes data!');
-}
+};
 
 const importCustomers = async () => {
     const customers = JSON.parse(
@@ -58,11 +58,7 @@ const importCustomers = async () => {
 
     let insertCustomersQuery = '';
     for (const customer of customers) {
-        const {
-            driversLicence,
-            phone,
-            name,
-        } = customer;
+        const { driversLicence, phone, name } = customer;
         insertCustomersQuery += `
             INSERT INTO customers(driversLicence, phone, name)
             VALUES("${driversLicence}", "${phone}", "${name}");
@@ -70,7 +66,7 @@ const importCustomers = async () => {
     }
     await connection.query(insertCustomersQuery);
     log.success('👌 imported customers data!');
-}
+};
 
 const importVehicles = async () => {
     const vehicles = JSON.parse(
@@ -95,7 +91,17 @@ const importVehicles = async () => {
 
     let insertVehiclesQuery = '';
     for (const vehicle of vehicles) {
-        const { licence, make, model, year, color, status, vehicleTypeName, location, city } = vehicle;
+        const {
+            licence,
+            make,
+            model,
+            year,
+            color,
+            status,
+            vehicleTypeName,
+            location,
+            city
+        } = vehicle;
         insertVehiclesQuery += `
             INSERT INTO vehicles(licence, make, model, year, color, 
                                  status, vehicleTypeName, location, city)
@@ -105,7 +111,7 @@ const importVehicles = async () => {
     }
     await connection.query(insertVehiclesQuery);
     log.success('👌 imported vehicles data!');
-}
+};
 
 const importData = async () => {
     await importVehicleTypes();
