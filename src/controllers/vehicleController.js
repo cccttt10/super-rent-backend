@@ -2,7 +2,8 @@ const _db = require('../db').getDb();
 
 exports.getAllVehicles = async (req, res, next) => {
     // prepare query
-    let query = 'SELECT * FROM vehicles';
+    let query =
+        'SELECT * FROM vehicles INNER JOIN vehicleTypes USING (vehicleTypeName)';
 
     // prepare query: sorting
     if (req.query._sort && req.query._order) {
