@@ -1,16 +1,37 @@
 const _db = require('../db').getDb();
-const dataHandler = require('../util/dataHandler');
-const uuid = require('uuid/v4');
 
 exports.getAllVehicles = async (req, res, next) => {
-    let results = await _db.query(`SELECT * FROM vehicles`);
+    // prepare query
+    let query = 'SELECT * FROM vehicles';
+
+    // prepare query: sorting
+    if (req.query._sort && req.query._order) {
+        const sort = req.query._sort === 'id' ? 'licence' : req.query._sort;
+        const order = req.query._order;
+        query += ` ORDER BY ${sort} ${order}`;
+    }
+
+    // prepare query: pagination
+    if (req.query._start && req.query._end) {
+        const start = req.query._start;
+        const end = req.query._end;
+        const numRows = end - start;
+        query += ` LIMIT ${start}, ${numRows}`;
+    }
+
+    // send query
+    let results = await _db.query(query);
+
+    // prepare response
     results = JSON.parse(JSON.stringify(results));
     let vehicles = results[0];
     const totalCount = vehicles.length;
-    if (req.query._start && req.query._end)
-        vehicles = dataHandler.paginate(vehicles, req);
-    if (req.query._sort && req.query._order)
-        vehicles = dataHandler.sort(vehicles, req);
+    vehicles = vehicles.map(vehicle => {
+        vehicle.id = vehicle.licence;
+        return vehicle;
+    });
+
+    // send response
     res.status(200)
         .set({
             'X-Total-Count': totalCount,
@@ -20,11 +41,18 @@ exports.getAllVehicles = async (req, res, next) => {
 };
 
 exports.getVehicle = async (req, res, next) => {
+    // prepare & send query
+    const licence = req.params.id;
     let results = await _db.query(
-        `SELECT * FROM vehicles where id = "${req.params.id}";`
+        `SELECT * FROM vehicles where licence = "${licence}";`
     );
+
+    // prepare response
     results = JSON.parse(JSON.stringify(results));
     const vehicle = results[0][0];
+    vehicle.id = vehicle.licence;
+
+    // send response
     res.status(200)
         .set({
             'X-Total-Count': 1,
@@ -34,25 +62,46 @@ exports.getVehicle = async (req, res, next) => {
 };
 
 exports.updateVehicle = async (req, res, next) => {
-    const id = req.params.id;
-    const { licence, make, model, year, color, odometer, status } = req.body;
+    // prepare query
+    const prevLicence = req.params.id;
+    const {
+        licence,
+        make,
+        model,
+        year,
+        color,
+        status,
+        vehicleTypeName,
+        location,
+        city
+    } = req.body;
 
+    // send query
     await _db.query(
         `
             UPDATE vehicles
-            SET licence = ${licence},
-                make = '${make}',
-                model = '${model}',
+            SET licence = "${licence}",
+                make = "${make}",
+                model = "${model}",
                 year = ${year},
-                color = '${color}',
-                odometer = ${odometer},
-                status = '${status}'
-                WHERE id = '${id}';
+                color = "${color}",
+                status = "${status}",
+                vehicleTypeName = "${vehicleTypeName}",
+                location = "${location}",
+                city = "${city}"
+                WHERE licence = '${prevLicence}';
         `
     );
-    let results = await _db.query(`SELECT * FROM vehicles WHERE id = '${id}';`);
+    let results = await _db.query(
+        `SELECT * FROM vehicles WHERE licence = '${licence}';`
+    );
+
+    // prepare response
     results = JSON.parse(JSON.stringify(results));
     const updatedVehicle = results[0][0];
+    updatedVehicle.id = updatedVehicle.licence;
+
+    // send response
     res.status(200)
         .set({
             'X-Total-Count': 1,
@@ -62,22 +111,44 @@ exports.updateVehicle = async (req, res, next) => {
 };
 
 exports.deleteVehicle = async (req, res, next) => {
-    const id = req.params.id;
-    await _db.query(`DELETE FROM vehicles WHERE id ='${id}'`);
+    // prepare & send query
+    const licence = req.params.id;
+    await _db.query(`DELETE FROM vehicles WHERE licence ='${licence}'`);
+
+    // send response
     res.status(204).json(null);
 };
 
 exports.createVehicle = async (req, res, next) => {
-    const id = uuid();
-    const { licence, make, model, year, color, odometer, status } = req.body;
+    // prepare query
+    const {
+        licence,
+        make,
+        model,
+        year,
+        color,
+        status,
+        vehicleTypeName,
+        location,
+        city
+    } = req.body;
+
+    // send query
     let results = await _db.query(
         `
-            INSERT INTO vehicles(id, licence, make, model, year, color, odometer, status)
-            VALUES("${id}", ${licence}, "${make}", "${model}", ${year}, "${color}", ${odometer}, "${status}");
+            INSERT INTO vehicles(licence, make, model, year, color, status, vehicleTypeName, location, city)
+            VALUES(${licence}, "${make}", "${model}", ${year}, "${color}", "${status}", "${vehicleTypeName}", "${location}", "${city}");
         `
     );
-    results = await _db.query(`SELECT * FROM vehicles WHERE id = '${id}';`);
+    results = await _db.query(
+        `SELECT * FROM vehicles WHERE licence = '${licence}';`
+    );
+
+    // prepare response
     results = JSON.parse(JSON.stringify(results));
     const createdVehicle = results[0][0];
+    createdVehicle.id = createdVehicle.licence;
+
+    // send response
     res.status(201).json(createdVehicle);
 };
