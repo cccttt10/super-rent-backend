@@ -89,11 +89,80 @@ const importVehicles = async () => {
     log.success('👌 imported vehicles data!');
 };
 
+const importReservations = async () => {
+    const reservations = JSON.parse(
+        fs.readFileSync('src/dev-data/data/reservations.json', 'utf8')
+    );
+    let insertReservationsQuery = '';
+    for (const reservation of reservations) {
+        const {
+            confNum,
+            vehicleTypeName,
+            driversLicence,
+            fromDate,
+            toDate,
+        } = reservation;
+        insertReservationsQuery += `
+            INSERT INTO reservations(confNum, vehicleTypeName, driversLicence, fromDate, toDate)
+            VALUES("${confNum}", "${vehicleTypeName}", "${driversLicence}", 
+                    STR_TO_DATE("${fromDate}", "%Y-%m-%d"), STR_TO_DATE("${toDate}", "%Y-%m-%d"));
+        `;
+    }
+    await connection.query(insertReservationsQuery);
+    log.success('👌 imported reservations data!');
+};
+
+const importRents = async () => {
+    const rents = JSON.parse(
+        fs.readFileSync('src/dev-data/data/rents.json', 'utf8')
+    );
+    let insertRentsQuery = '';
+    for (const rent of rents) {
+        const { rentId, vehicleLicence, driversLicence, fromDate, toDate } = rent;
+        const confNum = rent.confNum;
+        if (confNum)
+            insertRentsQuery += `
+                INSERT INTO rents(rentId, vehicleLicence, driversLicence, fromDate, toDate, confNum)
+                VALUES("${rentId}", "${vehicleLicence}", "${driversLicence}",
+                        STR_TO_DATE("${fromDate}", "%Y-%m-%d"), STR_TO_DATE("${toDate}", "%Y-%m-%d"),
+                        "${confNum}");
+            `;
+        else
+            insertRentsQuery += `
+                INSERT INTO rents(rentId, vehicleLicence, driversLicence, fromDate, toDate, confNum)
+                VALUES("${rentId}", "${vehicleLicence}", "${driversLicence}",
+                        STR_TO_DATE("${fromDate}", "%Y-%m-%d"), STR_TO_DATE("${toDate}", "%Y-%m-%d"),
+                        NULL);
+            `;
+    }
+    await connection.query(insertRentsQuery);
+    log.success('👌 imported rents data!');
+}
+
+const importReturns = async () => {
+    const returns = JSON.parse(
+        fs.readFileSync('src/dev-data/data/returns.json', 'utf8')
+    );
+    let insertReturnsQuery = '';
+    for (const ret of returns) {
+        const { rentId, date, price } = ret;
+        insertReturnsQuery += `
+            INSERT INTO returns(rentId, date, price)
+            VALUES("${rentId}", STR_TO_DATE("${date}", "%Y-%m-%d"), ${price});
+        `;
+    }
+    await connection.query(insertReturnsQuery);
+    log.success('👌 imported returns data!');
+}
+
 const importData = async () => {
     await createTables();
     await importVehicleTypes();
     await importCustomers();
     await importVehicles();
+    await importReservations();
+    await importRents();
+    await importReturns();
     log.success('👌 imported all data to database, done');
     process.exit(0);
 };

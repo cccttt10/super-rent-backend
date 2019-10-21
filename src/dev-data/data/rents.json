@@ -1,0 +1,17 @@
+[
+    {
+        "rentId": "ee5deb64-555f-43ff-b59c-ceb58e8b2603",
+        "vehicleLicence": "8344519",
+        "driversLicence": "3879590",
+        "fromDate": "2019-12-10",
+        "toDate": "2019-12-20",
+        "confNum": "20160497-40d3-41e9-944c-e25ae2e0df0d"
+    },
+    {
+        "rentId": "b6a0524f-d786-4ba6-97f7-550ccc9a2e63",
+        "vehicleLicence": "6906104",
+        "driversLicence": "3879590",
+        "fromDate": "2020-02-10",
+        "toDate": "2020-02-11"
+    }
+]

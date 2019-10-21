@@ -1,0 +1,72 @@
+[
+    {
+        "confNum": "20160497-40d3-41e9-944c-e25ae2e0df0d",
+        "vehicleTypeName": "Compact",
+        "driversLicence": "3879590",
+        "fromDate": "2019-12-10",
+        "toDate": "2019-12-20"
+    },
+    {
+        "confNum": "8ab37e33-46b9-4e73-acb1-ada425b14e4d",
+        "vehicleTypeName": "Full-size",
+        "driversLicence": "3879590",
+        "fromDate": "2019-12-12",
+        "toDate": "2020-12-23"
+    },
+    {
+        "confNum": "a4e38523-21e2-48f1-8fe9-5b44a194dec4",
+        "vehicleTypeName": "Compact",
+        "driversLicence": "3879590",
+        "fromDate": "2019-12-03",
+        "toDate": "2020-01-03"
+    },
+    {
+        "confNum": "040bfd06-c78d-4a8e-b3cc-7f342d040c28",
+        "vehicleTypeName": "Compact",
+        "driversLicence": "3879590",
+        "fromDate": "2019-12-15",
+        "toDate": "2019-12-28"
+    },
+    {
+        "confNum": "ec79dd1c-71b6-4d3b-9264-f7b40081ef1f",
+        "vehicleTypeName": "Compact",
+        "driversLicence": "3879590",
+        "fromDate": "2020-01-05",
+        "toDate": "2020-01-22"
+    },
+    {
+        "confNum": "9f14611a-ee3a-431c-86e2-03ad62729c06",
+        "vehicleTypeName": "Compact",
+        "driversLicence": "3879590",
+        "fromDate": "2019-12-19",
+        "toDate": "2021-02-13"
+    },
+    {
+        "confNum": "35f4bbe3-9650-4a47-8c8e-7154e0793703",
+        "vehicleTypeName": "Standard",
+        "driversLicence": "3879590",
+        "fromDate": "2019-12-29",
+        "toDate": "2019-12-30"
+    },
+    {
+        "confNum": "ba7e09a3-e3cf-461b-92d4-4695fc4cff4e",
+        "vehicleTypeName": "SUV",
+        "driversLicence": "3879590",
+        "fromDate": "2019-12-03",
+        "toDate": "2019-12-30"
+    },
+    {
+        "confNum": "3ff8074e-37b2-4426-9098-8b58b787439c",
+        "vehicleTypeName": "Truck",
+        "driversLicence": "3879590",
+        "fromDate": "2020-01-01",
+        "toDate": "2020-02-01"
+    },
+    {
+        "confNum": "44ab8d86-3409-4c2c-8fd8-70fb4a3ed05a",
+        "vehicleTypeName": "Truck",
+        "driversLicence": "3879590",
+        "fromDate": "2019-12-10",
+        "toDate": "2019-12-20"
+    }
+]
