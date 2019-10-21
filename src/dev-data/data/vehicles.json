@@ -1,6 +1,6 @@
 [
     {
-        "licence": 4159547,
+        "vehicleLicence": 4159547,
         "make": "Honda",
         "model": "S-ClASS",
         "year": 2002,
@@ -11,7 +11,7 @@
         "city": "Victoria"
     },
     {
-        "licence": 2173299,
+        "vehicleLicence": 2173299,
         "make": "Toyota",
         "model": "S-ClASS",
         "year": 2012,
@@ -22,7 +22,7 @@
         "city": "Edmonton"
     },
     {
-        "licence": 8344519,
+        "vehicleLicence": 8344519,
         "make": "Volkswagen",
         "model": "A-Class",
         "year": 2013,
@@ -33,7 +33,7 @@
         "city": "Waterloo"
     },
     {
-        "licence": 3661513,
+        "vehicleLicence": 3661513,
         "make": "Volkswagen",
         "model": "A-Class",
         "year": 2012,
@@ -44,7 +44,7 @@
         "city": "Vancouver"
     },
     {
-        "licence": 5656858,
+        "vehicleLicence": 5656858,
         "make": "Toyota",
         "model": "X-Class",
         "year": 1996,
@@ -55,7 +55,7 @@
         "city": "Waterloo"
     },
     {
-        "licence": 4545691,
+        "vehicleLicence": 4545691,
         "make": "Benz",
         "model": "A-Class",
         "year": 1995,
@@ -66,7 +66,7 @@
         "city": "London"
     },
     {
-        "licence": 8077469,
+        "vehicleLicence": 8077469,
         "make": "Ford",
         "model": "X-Class",
         "year": 1996,
@@ -77,7 +77,7 @@
         "city": "Toronto"
     },
     {
-        "licence": 4420988,
+        "vehicleLicence": 4420988,
         "make": "Mazda",
         "model": "A-Class",
         "year": 2000,
@@ -88,7 +88,7 @@
         "city": "Vancouver"
     },
     {
-        "licence": 2095374,
+        "vehicleLicence": 2095374,
         "make": "BMW",
         "model": "S-ClASS",
         "year": 2005,
@@ -99,7 +99,7 @@
         "city": "Montreal"
     },
     {
-        "licence": 9752978,
+        "vehicleLicence": 9752978,
         "make": "Honda",
         "model": "B-Class",
         "year": 2013,
@@ -110,7 +110,7 @@
         "city": "Victoria"
     },
     {
-        "licence": 9877216,
+        "vehicleLicence": 9877216,
         "make": "Volkswagen",
         "model": "A-Class",
         "year": 1990,
@@ -121,7 +121,7 @@
         "city": "Victoria"
     },
     {
-        "licence": 8801063,
+        "vehicleLicence": 8801063,
         "make": "Benz",
         "model": "S-ClASS",
         "year": 2017,
@@ -132,7 +132,7 @@
         "city": "Montreal"
     },
     {
-        "licence": 3191418,
+        "vehicleLicence": 3191418,
         "make": "Ford",
         "model": "A-Class",
         "year": 2002,
@@ -143,7 +143,7 @@
         "city": "Edmonton"
     },
     {
-        "licence": 3950628,
+        "vehicleLicence": 3950628,
         "make": "Ford",
         "model": "S-ClASS",
         "year": 2011,
@@ -154,7 +154,7 @@
         "city": "Toronto"
     },
     {
-        "licence": 1959175,
+        "vehicleLicence": 1959175,
         "make": "Toyota",
         "model": "X-Class",
         "year": 1994,
@@ -165,7 +165,7 @@
         "city": "Victoria"
     },
     {
-        "licence": 1731223,
+        "vehicleLicence": 1731223,
         "make": "Mazda",
         "model": "S-ClASS",
         "year": 1991,
@@ -176,7 +176,7 @@
         "city": "Waterloo"
     },
     {
-        "licence": 7413761,
+        "vehicleLicence": 7413761,
         "make": "Honda",
         "model": "X-Class",
         "year": 1991,
@@ -187,7 +187,7 @@
         "city": "Ottawa"
     },
     {
-        "licence": 9552440,
+        "vehicleLicence": 9552440,
         "make": "Benz",
         "model": "X-Class",
         "year": 2012,
@@ -198,7 +198,7 @@
         "city": "Montreal"
     },
     {
-        "licence": 6906104,
+        "vehicleLicence": 6906104,
         "make": "Volkswagen",
         "model": "S-ClASS",
         "year": 1991,
@@ -209,7 +209,7 @@
         "city": "Ottawa"
     },
     {
-        "licence": 4664513,
+        "vehicleLicence": 4664513,
         "make": "Mazda",
         "model": "X-Class",
         "year": 2007,
@@ -220,7 +220,7 @@
         "city": "Ottawa"
     },
     {
-        "licence": 2969875,
+        "vehicleLicence": 2969875,
         "make": "Benz",
         "model": "A-Class",
         "year": 1999,
@@ -231,7 +231,7 @@
         "city": "London"
     },
     {
-        "licence": 4441118,
+        "vehicleLicence": 4441118,
         "make": "Mazda",
         "model": "X-Class",
         "year": 1994,
@@ -242,7 +242,7 @@
         "city": "Edmonton"
     },
     {
-        "licence": 4636785,
+        "vehicleLicence": 4636785,
         "make": "Honda",
         "model": "S-ClASS",
         "year": 2008,
@@ -253,7 +253,7 @@
         "city": "Waterloo"
     },
     {
-        "licence": 2022313,
+        "vehicleLicence": 2022313,
         "make": "Honda",
         "model": "A-Class",
         "year": 1999,
@@ -264,7 +264,7 @@
         "city": "Ottawa"
     },
     {
-        "licence": 1447943,
+        "vehicleLicence": 1447943,
         "make": "Ford",
         "model": "A-Class",
         "year": 2018,
@@ -275,7 +275,7 @@
         "city": "Toronto"
     },
     {
-        "licence": 8272381,
+        "vehicleLicence": 8272381,
         "make": "Benz",
         "model": "A-Class",
         "year": 1991,
@@ -286,7 +286,7 @@
         "city": "Ottawa"
     },
     {
-        "licence": 8777817,
+        "vehicleLicence": 8777817,
         "make": "Toyota",
         "model": "B-Class",
         "year": 1990,
@@ -297,7 +297,7 @@
         "city": "Ottawa"
     },
     {
-        "licence": 8269670,
+        "vehicleLicence": 8269670,
         "make": "Honda",
         "model": "A-Class",
         "year": 2007,
@@ -308,7 +308,7 @@
         "city": "London"
     },
     {
-        "licence": 7227166,
+        "vehicleLicence": 7227166,
         "make": "Mazda",
         "model": "X-Class",
         "year": 2015,
@@ -319,7 +319,7 @@
         "city": "Waterloo"
     },
     {
-        "licence": 2051020,
+        "vehicleLicence": 2051020,
         "make": "Mazda",
         "model": "S-ClASS",
         "year": 2011,
@@ -330,7 +330,7 @@
         "city": "Waterloo"
     },
     {
-        "licence": 6198651,
+        "vehicleLicence": 6198651,
         "make": "BMW",
         "model": "A-Class",
         "year": 1999,
@@ -341,7 +341,7 @@
         "city": "London"
     },
     {
-        "licence": 3434440,
+        "vehicleLicence": 3434440,
         "make": "Toyota",
         "model": "S-ClASS",
         "year": 2010,
@@ -352,7 +352,7 @@
         "city": "Waterloo"
     },
     {
-        "licence": 7348385,
+        "vehicleLicence": 7348385,
         "make": "BMW",
         "model": "B-Class",
         "year": 2014,
@@ -363,7 +363,7 @@
         "city": "Vancouver"
     },
     {
-        "licence": 6007341,
+        "vehicleLicence": 6007341,
         "make": "Volkswagen",
         "model": "B-Class",
         "year": 2013,
@@ -374,7 +374,7 @@
         "city": "Waterloo"
     },
     {
-        "licence": 6338372,
+        "vehicleLicence": 6338372,
         "make": "BMW",
         "model": "A-Class",
         "year": 2008,
@@ -385,7 +385,7 @@
         "city": "Edmonton"
     },
     {
-        "licence": 4874051,
+        "vehicleLicence": 4874051,
         "make": "BMW",
         "model": "X-Class",
         "year": 2010,
@@ -396,7 +396,7 @@
         "city": "Toronto"
     },
     {
-        "licence": 9346130,
+        "vehicleLicence": 9346130,
         "make": "Benz",
         "model": "S-ClASS",
         "year": 2008,
@@ -407,7 +407,7 @@
         "city": "Toronto"
     },
     {
-        "licence": 1793985,
+        "vehicleLicence": 1793985,
         "make": "Benz",
         "model": "X-Class",
         "year": 1998,
@@ -418,7 +418,7 @@
         "city": "Waterloo"
     },
     {
-        "licence": 5488071,
+        "vehicleLicence": 5488071,
         "make": "BMW",
         "model": "A-Class",
         "year": 2014,
@@ -429,7 +429,7 @@
         "city": "Toronto"
     },
     {
-        "licence": 2238064,
+        "vehicleLicence": 2238064,
         "make": "Toyota",
         "model": "A-Class",
         "year": 1991,

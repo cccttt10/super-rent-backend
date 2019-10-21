@@ -8,7 +8,7 @@ CREATE TABLE customers(
   name VARCHAR(50) NOT NULL
 );
 CREATE TABLE vehicles(
-  licence VARCHAR(50) PRIMARY KEY,
+  vehicleLicence VARCHAR(50) PRIMARY KEY,
   make VARCHAR(50),
   model VARCHAR(50),
   year YEAR,
@@ -35,7 +35,7 @@ CREATE TABLE rents(
   fromDate DATE NOT NULL,
   toDate DATE NOT NULL,
   confNum VARCHAR(255) UNIQUE,
-  CONSTRAINT rent_vehicle FOREIGN KEY (vehicleLicence) REFERENCES vehicles(licence) ON DELETE CASCADE,
+  CONSTRAINT rent_vehicle FOREIGN KEY (vehicleLicence) REFERENCES vehicles(vehicleLicence) ON DELETE CASCADE,
   CONSTRAINT rent_customer FOREIGN KEY (driversLicence) REFERENCES customers(driversLicence) ON DELETE CASCADE,
   CONSTRAINT rent_reservation FOREIGN KEY (confNum) REFERENCES reservations(confNum) ON DELETE CASCADE
 );

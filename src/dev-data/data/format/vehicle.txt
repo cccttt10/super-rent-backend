@@ -1,7 +1,7 @@
 [
   '{{repeat(30, 60)}}',
   {
-    licence: '{{integer(1000000, 9999999)}}',
+    vehicleLicence: '{{integer(1000000, 9999999)}}',
     make: '{{random("BMW", "Benz", "Honda", "Toyota",  "Mazda", "Ford", "Volkswagen")}}',
     model: '{{random("A-Class", "B-Class", "S-ClASS", "X-Class")}}',
     year:'{{integer(1990, 2019)}}',

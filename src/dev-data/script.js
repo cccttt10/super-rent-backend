@@ -68,7 +68,7 @@ const importVehicles = async () => {
     let insertVehiclesQuery = '';
     for (const vehicle of vehicles) {
         const {
-            licence,
+            vehicleLicence,
             make,
             model,
             year,
@@ -79,9 +79,9 @@ const importVehicles = async () => {
             city
         } = vehicle;
         insertVehiclesQuery += `
-            INSERT INTO vehicles(licence, make, model, year, color, 
+            INSERT INTO vehicles(vehicleLicence, make, model, year, color, 
                                  status, vehicleTypeName, location, city)
-            VALUES("${licence}", "${make}", "${model}", ${year}, "${color}", 
+            VALUES("${vehicleLicence}", "${make}", "${model}", ${year}, "${color}", 
                   "${status}", "${vehicleTypeName}", "${location}", "${city}");
         `;
     }

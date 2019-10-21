@@ -34,7 +34,7 @@ exports.getAllVehicles = async (req, res, next) => {
 
     // prepare query: sorting
     if (req.query._sort && req.query._order) {
-        const sort = req.query._sort === 'id' ? 'licence' : req.query._sort;
+        const sort = req.query._sort === 'id' ? 'vehicleLicence' : req.query._sort;
         const order = req.query._order;
         query += ` ORDER BY ${sort} ${order}`;
     }
@@ -55,7 +55,7 @@ exports.getAllVehicles = async (req, res, next) => {
     let vehicles = results[0];
     const totalCount = vehicles.length;
     vehicles = vehicles.map(vehicle => {
-        vehicle.id = vehicle.licence;
+        vehicle.id = vehicle.vehicleLicence;
         return vehicle;
     });
 
@@ -70,15 +70,15 @@ exports.getAllVehicles = async (req, res, next) => {
 
 exports.getVehicle = async (req, res, next) => {
     // prepare & send query
-    const licence = req.params.id;
+    const vehicleLicence = req.params.id;
     let results = await _db.query(
-        `SELECT * FROM vehicles where licence = "${licence}";`
+        `SELECT * FROM vehicles where vehicleLicence = "${vehicleLicence}";`
     );
 
     // prepare response
     results = JSON.parse(JSON.stringify(results));
     const vehicle = results[0][0];
-    vehicle.id = vehicle.licence;
+    vehicle.id = vehicle.vehicleLicence;
 
     // send response
     res.status(200)
@@ -91,9 +91,9 @@ exports.getVehicle = async (req, res, next) => {
 
 exports.updateVehicle = async (req, res, next) => {
     // prepare query
-    const prevLicence = req.params.id;
+    const prevvehicleLicence = req.params.id;
     const {
-        licence,
+        vehicleLicence,
         make,
         model,
         year,
@@ -108,7 +108,7 @@ exports.updateVehicle = async (req, res, next) => {
     await _db.query(
         `
             UPDATE vehicles
-            SET licence = "${licence}",
+            SET vehicleLicence = "${vehicleLicence}",
                 make = "${make}",
                 model = "${model}",
                 year = ${year},
@@ -117,17 +117,17 @@ exports.updateVehicle = async (req, res, next) => {
                 vehicleTypeName = "${vehicleTypeName}",
                 location = "${location}",
                 city = "${city}"
-                WHERE licence = '${prevLicence}';
+                WHERE vehicleLicence = '${prevvehicleLicence}';
         `
     );
     let results = await _db.query(
-        `SELECT * FROM vehicles WHERE licence = '${licence}';`
+        `SELECT * FROM vehicles WHERE vehicleLicence = '${vehicleLicence}';`
     );
 
     // prepare response
     results = JSON.parse(JSON.stringify(results));
     const updatedVehicle = results[0][0];
-    updatedVehicle.id = updatedVehicle.licence;
+    updatedVehicle.id = updatedVehicle.vehicleLicence;
 
     // send response
     res.status(200)
@@ -140,8 +140,10 @@ exports.updateVehicle = async (req, res, next) => {
 
 exports.deleteVehicle = async (req, res, next) => {
     // prepare & send query
-    const licence = req.params.id;
-    await _db.query(`DELETE FROM vehicles WHERE licence ='${licence}'`);
+    const vehicleLicence = req.params.id;
+    await _db.query(
+        `DELETE FROM vehicles WHERE vehicleLicence ='${vehicleLicence}'`
+    );
 
     // send response
     res.status(204).json(null);
@@ -150,7 +152,7 @@ exports.deleteVehicle = async (req, res, next) => {
 exports.createVehicle = async (req, res, next) => {
     // prepare query
     const {
-        licence,
+        vehicleLicence,
         make,
         model,
         year,
@@ -164,18 +166,18 @@ exports.createVehicle = async (req, res, next) => {
     // send query
     let results = await _db.query(
         `
-            INSERT INTO vehicles(licence, make, model, year, color, status, vehicleTypeName, location, city)
-            VALUES(${licence}, "${make}", "${model}", ${year}, "${color}", "${status}", "${vehicleTypeName}", "${location}", "${city}");
+            INSERT INTO vehicles(vehicleLicence, make, model, year, color, status, vehicleTypeName, location, city)
+            VALUES(${vehicleLicence}, "${make}", "${model}", ${year}, "${color}", "${status}", "${vehicleTypeName}", "${location}", "${city}");
         `
     );
     results = await _db.query(
-        `SELECT * FROM vehicles WHERE licence = '${licence}';`
+        `SELECT * FROM vehicles WHERE vehicleLicence = '${vehicleLicence}';`
     );
 
     // prepare response
     results = JSON.parse(JSON.stringify(results));
     const createdVehicle = results[0][0];
-    createdVehicle.id = createdVehicle.licence;
+    createdVehicle.id = createdVehicle.vehicleLicence;
 
     // send response
     res.status(201).json(createdVehicle);
