@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const morgan = require('morgan');
 const customerRoutes = require('./routes/customerRoutes');
 const vehicleRoutes = require('./routes/vehicleRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
@@ -22,6 +23,7 @@ const handleOptionsRequest = (req, res, next) => {
     } else next();
 };
 
+if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 app.use(handleOptionsRequest);
 app.use(cors()); // Allow cross origin access
 app.use(express.json()); // Body parser
