@@ -5,6 +5,7 @@ const customerRoutes = require('./routes/customerRoutes');
 const vehicleRoutes = require('./routes/vehicleRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
 const rentRoutes = require('./routes/rentRoutes');
+const returnRoutes = require('./routes/returnRoutes');
 
 const handleOptionsRequest = (req, res, next) => {
     if (req.method === 'OPTIONS') {
@@ -28,5 +29,6 @@ app.use('/customers', customerRoutes);
 app.use('/vehicles', vehicleRoutes);
 app.use('/reservations', reservationRoutes);
 app.use('/rents', rentRoutes);
+app.use('/returns', returnRoutes);
 
 module.exports = app;
