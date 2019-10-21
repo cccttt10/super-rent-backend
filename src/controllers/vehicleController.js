@@ -1,11 +1,12 @@
 const _db = require('../db').getDb();
+const log = require('../util/log');
 
 exports.getAllVehicles = async (req, res, next) => {
     // prepare query
     let query =
         'SELECT * FROM vehicles INNER JOIN vehicleTypes USING (vehicleTypeName)';
 
-    // prepare query: filtering
+    // prepare query: filtering based on city and vehicle type
     if (req.query.city && !req.query.vehicleTypeName) {
         const city = req.query.city;
         query += ` WHERE city = "${city}"`;
@@ -19,6 +20,16 @@ exports.getAllVehicles = async (req, res, next) => {
     if (req.query.city && req.query.vehicleTypeName) {
         const { city, vehicleTypeName } = req.query;
         query += ` WHERE city = "${city}" AND vehicleTypeName = "${vehicleTypeName}"`;
+    }
+
+    // TODO - filtering based on to and / or from dates
+    if (req.query.fromDate && req.query.toDate) {
+        // keep the substring before 'T'
+        //  e.g. 2019-11-01T07%3A00%3A00.000Z ---> '2019-11-01'
+        const from = req.query.fromDate.split('T')[0];
+        const to = req.query.toDate.split('T')[0];
+        log.info(`From: ${from}`);
+        log.info(`To: ${to}`);
     }
 
     // prepare query: sorting
