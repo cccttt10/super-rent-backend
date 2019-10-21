@@ -5,6 +5,17 @@ exports.getAllReservations = async (req, res, next) => {
     // prepare query
     let query = 'SELECT * FROM reservations';
 
+    // filtering based on confNum, vehicleTypeName, driversLicence, fromDate, toDate
+    let dateFilter = { fromDate: '1900-01-01', toDate: '2050-01-01' };
+    if (req.query.fromDate) dateFilter.fromDate = req.query.fromDate.split('T')[0];
+    if (req.query.toDate) dateFilter.toDate = req.query.toDate.split('T')[0];
+    query += ` WHERE fromDate >= STR_TO_DATE("${dateFilter.fromDate}", "%Y-%m-%d") AND toDate <= STR_TO_DATE("${dateFilter.toDate}", "%Y-%m-%d")`;
+    if (req.query.confNum) query += ` AND confNum = "${req.query.confNum}"`;
+    if (req.query.driversLicence)
+        query += ` AND driversLicence = "${req.query.driversLicence}"`;
+    if (req.query.vehicleTypeName)
+        query += ` AND vehicleTypeName = "${req.query.vehicleTypeName}"`;
+
     // prepare query: sorting
     if (req.query._sort && req.query._order) {
         const sort = req.query._sort === 'id' ? 'confNum' : req.query._sort;
