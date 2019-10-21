@@ -43,5 +43,6 @@ CREATE TABLE returns(
   rentId VARCHAR(50) PRIMARY KEY,
   date DATE NOT NULL,
   price INT NOT NULL,
+  returnMessage VARCHAR(500),
   CONSTRAINT return_rent FOREIGN KEY (rentId) REFERENCES rents(rentId) ON DELETE CASCADE
 );
