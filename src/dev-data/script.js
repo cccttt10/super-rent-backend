@@ -100,7 +100,7 @@ const importReservations = async () => {
             vehicleTypeName,
             driversLicence,
             fromDate,
-            toDate,
+            toDate
         } = reservation;
         insertReservationsQuery += `
             INSERT INTO reservations(confNum, vehicleTypeName, driversLicence, fromDate, toDate)
@@ -137,7 +137,7 @@ const importRents = async () => {
     }
     await connection.query(insertRentsQuery);
     log.success('👌 imported rents data!');
-}
+};
 
 const importReturns = async () => {
     const returns = JSON.parse(
@@ -153,7 +153,7 @@ const importReturns = async () => {
     }
     await connection.query(insertReturnsQuery);
     log.success('👌 imported returns data!');
-}
+};
 
 const importData = async () => {
     await createTables();
