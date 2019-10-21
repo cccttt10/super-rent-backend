@@ -2,8 +2,11 @@ const _db = require('../db').getDb();
 const uuid = require('uuid/v4');
 
 exports.getAllRents = async (req, res, next) => {
-    // prepare query
     let query = 'SELECT * FROM rents';
+
+    // prepare query: filtering based on fromDate
+    if (req.query.fromDate)
+        query += ` WHERE fromDate = STR_TO_DATE("${req.query.fromDate}", "%Y-%m-%d")`;
 
     // prepare query: sorting
     if (req.query._sort && req.query._order) {
