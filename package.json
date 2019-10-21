@@ -10,6 +10,7 @@
         "start": "node src/index.js",
         "dev": "nodemon src/index.js",
         "start:prod": "NODE_ENV=production nodemon src/index.js",
+        "start-auto-restart": "pm2-runtime start ecosystem.config.js --env production",
         "import": "node src/dev-data/script.js --import",
         "delete": "node src/dev-data/script.js --delete",
         "lint": "eslint . --ext .js",
