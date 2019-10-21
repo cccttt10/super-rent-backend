@@ -1,5 +1,6 @@
 const _db = require('../db').getDb();
 const log = require('../util/log');
+const moment = require('moment');
 
 exports.getAllVehicles = async (req, res, next) => {
     // prepare query
@@ -181,4 +182,26 @@ exports.createVehicle = async (req, res, next) => {
 
     // send response
     res.status(201).json(createdVehicle);
+};
+
+// eslint-disable-next-line no-unused-vars
+exports.updateVehicleAvailability = async (req, res, next) => {
+    const today = moment().format('YYYY-MM-DD');
+    let results = await _db.query(
+        `SELECT * FROM rents where "${today}" >= fromDate AND "${today}" <= toDate`
+    );
+    results = JSON.parse(JSON.stringify(results));
+    let rents = results[0];
+    const rentedVehicles = rents.map(rent => rent.vehicleLicence);
+
+    log.info('The following vehicles are rented (not available) today.');
+    // eslint-disable-next-line no-console
+    console.log(rentedVehicles);
+
+    let updateAvailabilityQuery = '';
+    for (const rentedVehicle of rentedVehicles) {
+        updateAvailabilityQuery += `UPDATE vehicles SET status = "rented" where vehicleLicence = "${rentedVehicle}";`;
+    }
+    await _db.query(updateAvailabilityQuery);
+    return next();
 };
