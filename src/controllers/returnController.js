@@ -74,12 +74,21 @@ exports.deleteReturn = async (req, res, next) => {
 };
 
 exports.createReturn = async (req, res, next) => {
-    // prepare query
     const rentId = req.body.rentId;
-
     const endDate = req.body.date.split('T')[0];
 
-    // calculate price - VERY complicated
+    // check if there's already a rent corresponding to the rentId
+    let existingReturn = await _db.query(
+        `SELECT * FROM returns WHERE rentId = "${rentId}"`
+    );
+    existingReturn = JSON.parse(JSON.stringify(existingReturn));
+    existingReturn = existingReturn[0][0];
+    if (existingReturn)
+        return res.status(500).send({
+            message: 'This rent has already been returned! Duplicate return ❎'
+        });
+
+    // calculate price
     // given rentId, get rent, then get vehicleLicence and fromDate of the rent
     let rent = await _db.query(`SELECT * FROM rents WHERE rentId = "${rentId}"`);
     rent = JSON.parse(JSON.stringify(rent));
