@@ -93,12 +93,8 @@ exports.createReturn = async (req, res, next) => {
     let rent = await _db.query(`SELECT * FROM rents WHERE rentId = "${rentId}"`);
     rent = JSON.parse(JSON.stringify(rent));
     const vehicleLicence = rent[0][0].vehicleLicence;
-    let fromDate = rent[0][0].fromDate;
-    fromDate = fromDate.split('T')[0];
+    const fromDate = rent[0][0].fromDate.split('T')[0];
     const diffDays = moment(endDate).diff(moment(fromDate), 'days') + 1;
-    log.info(
-        `The rent started on ${fromDate} and ends on ${endDate}, the difference is ${diffDays}`
-    );
 
     // given vehicleLicence, get vehicle, then get vehicleType of the vehicle
     let vehicle = await _db.query(
@@ -113,14 +109,19 @@ exports.createReturn = async (req, res, next) => {
 
     // given vehicleType, get dayRate of the type, and calculate price of the rent
     const dayRate = vehicleType[0][0].dayRate;
-    log.info(`Day rate for the returned vehicle is ${dayRate}`);
     const price = dayRate * diffDays;
+    const returnMessage = `
+        This ${vehicleTypeName.toLowerCase()} vehicle (daily rate ${dayRate})
+        was rented for ${diffDays} days, from ${fromDate} to ${endDate}. 
+        Total price = ${dayRate} * ${diffDays} = ${price}
+    `;
+    log.info(returnMessage);
 
     // send query
     let results = await _db.query(
         `
-            INSERT INTO returns(rentId, date, price)
-            VALUES("${rentId}", STR_TO_DATE("${endDate}", "%Y-%m-%d"), ${price});
+            INSERT INTO returns(rentId, date, price, returnMessage)
+            VALUES("${rentId}", STR_TO_DATE("${endDate}", "%Y-%m-%d"), ${price}, "${returnMessage}");
         `
     );
     results = await _db.query(`SELECT * FROM returns where rentId = "${rentId}"`);
