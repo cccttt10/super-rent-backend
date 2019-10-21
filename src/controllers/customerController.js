@@ -4,7 +4,7 @@ exports.getAllCustomers = async (req, res, next) => {
     // prepare query
     let query = 'SELECT * FROM customers';
 
-    // // prepare query: sorting
+    // prepare query: sorting
     if (req.query._sort && req.query._order) {
         const sort = req.query._sort === 'id' ? 'driversLicence' : req.query._sort;
         const order = req.query._order;

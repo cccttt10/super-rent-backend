@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const customerRoutes = require('./routes/customerRoutes');
 const vehicleRoutes = require('./routes/vehicleRoutes');
+const reservationRoutes = require('./routes/reservationRoutes');
 
 const handleOptionsRequest = (req, res, next) => {
     if (req.method === 'OPTIONS') {
@@ -24,5 +25,6 @@ app.use(cors()); // Allow cross origin access
 app.use(express.json()); // Body parser
 app.use('/customers', customerRoutes);
 app.use('/vehicles', vehicleRoutes);
+app.use('/reservations', reservationRoutes);
 
 module.exports = app;
