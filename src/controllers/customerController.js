@@ -25,16 +25,19 @@ exports.getAllCustomers = async (req, res, next) => {
     // prepare response
     results = JSON.parse(JSON.stringify(results));
     let customers = results[0];
-    const totalCount = customers.length;
     customers = customers.map(customer => {
         customer.id = customer.driversLicence;
         return customer;
     });
 
+    results = await _db.query('SELECT COUNT(*) FROM customers');
+    results = JSON.parse(JSON.stringify(results));
+    const numCustomers = results[0][0]['COUNT(*)'];
+
     // send response
     res.status(200)
         .set({
-            'X-Total-Count': totalCount,
+            'X-Total-Count': numCustomers,
             'Access-Control-Expose-Headers': ['X-Total-Count']
         })
         .json(customers);
