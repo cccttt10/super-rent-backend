@@ -29,16 +29,19 @@ exports.getAllRents = async (req, res, next) => {
     // prepare response
     results = JSON.parse(JSON.stringify(results));
     let rents = results[0];
-    const totalCount = rents.length;
     rents = rents.map(rent => {
         rent.id = rent.rentId;
         return rent;
     });
 
+    results = await _db.query('SELECT COUNT(*) FROM returns');
+    results = JSON.parse(JSON.stringify(results));
+    const numRents = results[0][0]['COUNT(*)'];
+
     // send response
     res.status(200)
         .set({
-            'X-Total-Count': totalCount,
+            'X-Total-Count': numRents,
             'Access-Control-Expose-Headers': ['X-Total-Count']
         })
         .json(rents);
