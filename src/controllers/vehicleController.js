@@ -54,16 +54,21 @@ exports.getAllVehicles = async (req, res, next) => {
     // prepare response
     results = JSON.parse(JSON.stringify(results));
     let vehicles = results[0];
-    const totalCount = vehicles.length;
+    // const totalCount = vehicles.length;
     vehicles = vehicles.map(vehicle => {
         vehicle.id = vehicle.vehicleLicence;
         return vehicle;
     });
 
+    results = await _db.query('SELECT COUNT(*) FROM vehicles');
+    results = JSON.parse(JSON.stringify(results));
+    const numVehicles = results[0][0]['COUNT(*)'];
+    // log.info(`There are ${numVehicles} vehicles`);
+
     // send response
     res.status(200)
         .set({
-            'X-Total-Count': totalCount,
+            'X-Total-Count': numVehicles,
             'Access-Control-Expose-Headers': ['X-Total-Count']
         })
         .json(vehicles);
@@ -197,6 +202,7 @@ exports.updateVehicleAvailability = async (req, res, next) => {
     log.info('The following vehicles are rented (not available) today.');
     // eslint-disable-next-line no-console
     console.log(rentedVehicles);
+    if (rentedVehicles.length === 0) return next();
 
     let updateAvailabilityQuery = '';
     for (const rentedVehicle of rentedVehicles) {
