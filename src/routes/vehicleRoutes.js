@@ -3,7 +3,6 @@ const vehicleController = require('../controllers/vehicleController/');
 
 const router = express.Router();
 
-router.use(vehicleController.updateVehicleAvailability);
 router
     .route('/')
     .get(vehicleController.getAllVehicles)

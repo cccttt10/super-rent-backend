@@ -12,9 +12,12 @@ const updateVehicleAvailability = async (req, res, next) => {
     let rents = results[0];
     const rentedVehicles = rents.map(rent => rent.vehicleLicence);
 
-    log.info('The following vehicles are rented (not available) today.');
-    // eslint-disable-next-line no-console
-    console.log(rentedVehicles);
+    if (process.env.NODE_ENV === 'development') {
+        log.info('The following vehicles are rented (not available) today.');
+        // eslint-disable-next-line no-console
+        console.log(rentedVehicles);
+    }
+
     if (rentedVehicles.length === 0) return next();
 
     let updateAvailabilityQuery = '';

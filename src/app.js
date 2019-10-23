@@ -7,6 +7,7 @@ const vehicleRoutes = require('./routes/vehicleRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
 const rentRoutes = require('./routes/rentRoutes');
 const returnRoutes = require('./routes/returnRoutes');
+const updateVehicleAvailability = require('./controllers/vehicleController/updateVehicleAvailability');
 
 const handleOptionsRequest = (req, res, next) => {
     if (req.method === 'OPTIONS') {
@@ -27,6 +28,7 @@ if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 app.use(handleOptionsRequest);
 app.use(cors()); // Allow cross origin access
 app.use(express.json()); // Body parser
+app.use(updateVehicleAvailability);
 app.use('/customers', customerRoutes);
 app.use('/vehicles', vehicleRoutes);
 app.use('/reservations', reservationRoutes);
