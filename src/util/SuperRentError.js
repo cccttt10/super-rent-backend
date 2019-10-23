@@ -1,6 +1,8 @@
-class SuperRentError {
-    constructor(message) {
-        this.message = message;
+class SuperRentError extends Error {
+    constructor({ message, statusCode }) {
+        super(message);
+        this.statusCode = statusCode;
+        Error.captureStackTrace(this, this.constructor);
     }
 }
 

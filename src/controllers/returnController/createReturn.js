@@ -3,8 +3,9 @@ const log = require('../../util/log');
 const moment = require('moment');
 moment().format();
 const SuperRentError = require('../../util/SuperRentError');
+const tryAsync = require('../../util/tryAsync');
 
-const createReturn = async (req, res, next) => {
+const createReturn = tryAsync(async (req, res, next) => {
     const rentId = req.body.rentId;
     const endDate = req.body.date.split('T')[0];
 
@@ -15,13 +16,10 @@ const createReturn = async (req, res, next) => {
     existingReturn = JSON.parse(JSON.stringify(existingReturn));
     existingReturn = existingReturn[0][0];
     if (existingReturn)
-        return res
-            .status(500)
-            .send(
-                new SuperRentError(
-                    'This rent has already been returned! Duplicate return ❎'
-                )
-            );
+        throw new SuperRentError({
+            message: 'This rent has already been returned! Duplicate return ❎',
+            statusCode: 500
+        });
 
     // calculate price
     // given rentId, get rent, then get vehicleLicence and fromDate of the rent
@@ -67,6 +65,6 @@ const createReturn = async (req, res, next) => {
 
     // send response
     res.status(201).json(createdReturn);
-};
+});
 
 module.exports = createReturn;
