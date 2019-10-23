@@ -6,7 +6,7 @@
 
 3. Place the `config.env` file in the project root directory. Do NOT ever share this file with anyone.
 
-## Project commands
+## Start the server
 
 Once your environment is configured you need to further prepare the project's tooling and dependencies. In the project directory:
 
