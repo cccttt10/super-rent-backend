@@ -2,6 +2,7 @@ const _db = require('../../db').getDb();
 const log = require('../../util/log');
 const moment = require('moment');
 moment().format();
+const SuperRentError = require('../../util/SuperRentError');
 
 const createReturn = async (req, res, next) => {
     const rentId = req.body.rentId;
@@ -14,9 +15,13 @@ const createReturn = async (req, res, next) => {
     existingReturn = JSON.parse(JSON.stringify(existingReturn));
     existingReturn = existingReturn[0][0];
     if (existingReturn)
-        return res.status(500).send({
-            message: 'This rent has already been returned! Duplicate return ❎'
-        });
+        return res
+            .status(500)
+            .send(
+                new SuperRentError(
+                    'This rent has already been returned! Duplicate return ❎'
+                )
+            );
 
     // calculate price
     // given rentId, get rent, then get vehicleLicence and fromDate of the rent
