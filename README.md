@@ -14,6 +14,16 @@ Once your environment is configured you need to further prepare the project's to
 
 2. `npm run dev` to start the server in development mode.
 
+## Additional scripts
+
+1. `npm run check` to check code styles.
+
+2. `npm run pretty` to fix code styles.
+
+3. `npm run delete` to drop all tables and delete all data from the database.
+
+4. `npm run import` to import all mock data in `dev-data/data/` into the database.
+
 ## Helpful links
 
 1. [Quick intro to Node.js](https://nodejs.dev/introduction-to-nodejs)
