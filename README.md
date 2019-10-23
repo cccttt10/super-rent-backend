@@ -22,7 +22,7 @@ Once your environment is configured you need to further prepare the project's to
 
 3. `npm run delete` to drop all tables and delete all data from the database.
 
-4. `npm run import` to import all mock data in `dev-data/data/` into the database.
+4. `npm run import` to import all mock data in `src/dev-data/data/` into the database.
 
 ## Helpful links
 
