@@ -1,4 +1,5 @@
 const _db = require('../../db').getDb();
+// eslint-disable-next-line no-unused-vars
 const log = require('../../util/log');
 const moment = require('moment');
 
@@ -13,9 +14,9 @@ const updateVehicleAvailability = async (req, res, next) => {
     const rentedVehicles = rents.map(rent => rent.vehicleLicence);
 
     if (process.env.NODE_ENV === 'development') {
-        log.info('The following vehicles are rented (not available) today.');
+        // log.info('The following vehicles are rented (not available) today.');
         // eslint-disable-next-line no-console
-        console.log(rentedVehicles);
+        // console.log(rentedVehicles);
     }
 
     if (rentedVehicles.length === 0) return next();
