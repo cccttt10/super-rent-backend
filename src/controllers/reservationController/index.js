@@ -1,8 +1,9 @@
-const getAllReservations = require('./getAllReservations');
-const getReservation = require('./getReservation');
-const updateReservation = require('./updateReservation');
-const deleteReservation = require('./deleteReservation');
-const createReservation = require('./createReservation');
+const tryAsync = require('../../util/tryAsync');
+const getAllReservations = tryAsync(require('./getAllReservations'));
+const getReservation = tryAsync(require('./getReservation'));
+const updateReservation = tryAsync(require('./updateReservation'));
+const deleteReservation = tryAsync(require('./deleteReservation'));
+const createReservation = tryAsync(require('./createReservation'));
 
 module.exports = {
     getAllReservations,

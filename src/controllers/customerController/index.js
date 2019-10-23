@@ -1,8 +1,9 @@
-const getAllCustomers = require('./getAllCustomers');
-const getCustomer = require('./getCustomer');
-const updateCustomer = require('./updateCustomer');
-const deleteCustomer = require('./deleteCustomer');
-const createCustomer = require('./createCustomer');
+const tryAsync = require('../../util/tryAsync');
+const getAllCustomers = tryAsync(require('./getAllCustomers'));
+const getCustomer = tryAsync(require('./getCustomer'));
+const updateCustomer = tryAsync(require('./updateCustomer'));
+const deleteCustomer = tryAsync(require('./deleteCustomer'));
+const createCustomer = tryAsync(require('./createCustomer'));
 
 module.exports = {
     getAllCustomers,

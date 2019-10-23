@@ -1,9 +1,10 @@
-const getAllVehicles = require('./getAllVehicles');
-const getVehicle = require('./getVehicle');
-const updateVehicle = require('./updateVehicle');
-const deleteVehicle = require('./deleteVehicle');
-const createVehicle = require('./createVehicle');
-const updateVehicleAvailability = require('./updateVehicleAvailability');
+const tryAsync = require('../../util/tryAsync');
+const getAllVehicles = tryAsync(require('./getAllVehicles'));
+const getVehicle = tryAsync(require('./getVehicle'));
+const updateVehicle = tryAsync(require('./updateVehicle'));
+const deleteVehicle = tryAsync(require('./deleteVehicle'));
+const createVehicle = tryAsync(require('./createVehicle'));
+const updateVehicleAvailability = tryAsync(require('./updateVehicleAvailability'));
 
 module.exports = {
     getAllVehicles,
