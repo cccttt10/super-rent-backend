@@ -3,9 +3,8 @@ const log = require('../../util/log');
 const moment = require('moment');
 moment().format();
 const SuperRentError = require('../../util/SuperRentError');
-const tryAsync = require('../../util/tryAsync');
 
-const createReturn = tryAsync(async (req, res, next) => {
+const createReturn = async (req, res, next) => {
     const rentId = req.body.rentId;
     const endDate = req.body.date.split('T')[0];
 
@@ -65,6 +64,6 @@ const createReturn = tryAsync(async (req, res, next) => {
 
     // send response
     res.status(201).json(createdReturn);
-});
+};
 
 module.exports = createReturn;

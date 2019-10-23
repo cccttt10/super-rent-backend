@@ -1,8 +1,7 @@
 const _db = require('../../db').getDb();
 const SuperRentError = require('../../util/SuperRentError');
-const tryAsync = require('../../util/tryAsync');
 
-const validateRent = tryAsync(async (req, res, next) => {
+const validateRent = async (req, res, next) => {
     const vehicleLicence = req.body.vehicleLicence;
     const confNum = req.body.confNum;
     let results;
@@ -22,7 +21,7 @@ const validateRent = tryAsync(async (req, res, next) => {
         await validateConfNum(confNum);
         return next();
     }
-});
+};
 
 const validateVehicleLicence = async vehicleLicence => {
     let results;
