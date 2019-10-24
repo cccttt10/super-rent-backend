@@ -7,8 +7,9 @@ const getAllRents = async (req, res, next) => {
     if (req.query.fromDate)
         query += ` WHERE fromDate = STR_TO_DATE("${req.query.fromDate}", "%Y-%m-%d")`;
 
-    // prepare query: sorting
-    if (req.query._sort && req.query._order) {
+    // prepare query: sorting (everything except isReturned)
+    // sort isReturned at bottom because isReturned is not a attribute in rents relation
+    if (req.query._sort && req.query._order && req.query._sort !== 'isReturned') {
         const sort = req.query._sort === 'id' ? 'rentId' : req.query._sort;
         const order = req.query._order;
         query += ` ORDER BY ${sort} ${order}`;
@@ -45,6 +46,21 @@ const getAllRents = async (req, res, next) => {
         rent.isReturned = returnedRents.includes(rent.rentId);
         return rent;
     });
+
+    if (req.query._sort && req.query._sort === 'isReturned' && req.query._order) {
+        if (req.query._order === 'ASC')
+            rents.sort(
+                (a, b) =>
+                    new Boolean(a.isReturned).toString() >
+                    new Boolean(b.isReturned).toString()
+            );
+        else if (req.query._order === 'DESC')
+            rents.sort(
+                (a, b) =>
+                    new Boolean(a.isReturned).toString() <=
+                    new Boolean(b.isReturned).toString()
+            );
+    }
 
     // send response
     res.status(200)
