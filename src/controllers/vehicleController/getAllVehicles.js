@@ -4,33 +4,35 @@ const log = require('../../util/log');
 const getAllVehicles = async (req, res, next) => {
     // prepare query
     let query =
-        'SELECT * FROM vehicles INNER JOIN vehicleTypes USING (vehicleTypeName)';
+        'SELECT * FROM vehicles as V INNER JOIN vehicleTypes USING (vehicleTypeName)';
 
-    // prepare query: filtering based on city and vehicle type
-    if (req.query.city && !req.query.vehicleTypeName) {
-        const city = req.query.city;
-        query += ` WHERE city = "${city}"`;
-    }
+    // prepare query: filtering based on city, vehicle type, to / from dates
+    const city = req.query.city ? req.query.city : null;
+    const vehicleTypeName = req.query.vehicleTypeName
+        ? req.query.vehicleTypeName
+        : null;
+    const fromDate = req.query.fromDate ? req.query.fromDate : null;
+    const toDate = req.query.toDate ? req.query.toDate : null;
+    query += ` 
+        WHERE V.city <> "just a placeholder"
+               ${city !== null ? ` AND V.city = "${city}"` : ''}
+               ${
+                   vehicleTypeName !== null
+                       ? ` AND V.vehicleTypeName = "${vehicleTypeName}"`
+                       : ''
+               }
+               ${
+                   fromDate !== null && toDate !== null
+                       ? ` AND V.status <> "maintenance"
+                                                            AND V.vehicleLicence NOT IN 
+                                                                                 (SELECT R.vehicleLicence from rents as R 
+                                                                                 WHERE "${fromDate}" < R.toDate 
+                                                                                       AND "${toDate}" > R.fromDate)`
+                       : ''
+               }
+    `;
 
-    if (!req.query.city && req.query.vehicleTypeName) {
-        const vehicleTypeName = req.query.vehicleTypeName;
-        query += ` WHERE vehicleTypeName = "${vehicleTypeName}"`;
-    }
-
-    if (req.query.city && req.query.vehicleTypeName) {
-        const { city, vehicleTypeName } = req.query;
-        query += ` WHERE city = "${city}" AND vehicleTypeName = "${vehicleTypeName}"`;
-    }
-
-    // TODO - filtering based on to and / or from dates
-    if (req.query.fromDate && req.query.toDate) {
-        // keep the substring before 'T'
-        //  e.g. 2019-11-01T07%3A00%3A00.000Z ---> '2019-11-01'
-        const from = req.query.fromDate.split('T')[0];
-        const to = req.query.toDate.split('T')[0];
-        log.info(`From: ${from}`);
-        log.info(`To: ${to}`);
-    }
+    log.info(query);
 
     // prepare query: sorting
     if (req.query._sort && req.query._order) {
@@ -62,7 +64,6 @@ const getAllVehicles = async (req, res, next) => {
     results = await _db.query('SELECT COUNT(*) FROM vehicles');
     results = JSON.parse(JSON.stringify(results));
     const numVehicles = results[0][0]['COUNT(*)'];
-    // log.info(`There are ${numVehicles} vehicles`);
 
     // send response
     res.status(200)
