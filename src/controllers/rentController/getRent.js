@@ -10,6 +10,12 @@ const getRent = async (req, res, next) => {
     const rent = results[0][0];
     rent.id = rent.rentId;
 
+    results = await _db.query(
+        `SELECT rentId from returns WHERE rentId = "${rentId}"`
+    );
+    results = JSON.parse(JSON.stringify(results));
+    rent.isReturned = results[0].length !== 0;
+
     // send response
     res.status(200)
         .set({
