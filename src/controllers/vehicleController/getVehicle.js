@@ -4,7 +4,7 @@ const getVehicle = async (req, res, next) => {
     // prepare & send query
     const vehicleLicence = req.params.id;
     let results = await _db.query(
-        `SELECT * FROM vehicles where vehicleLicence = "${vehicleLicence}";`
+        `SELECT * FROM (vehicles INNER JOIN vehicleTypes USING (vehicleTypeName)) WHERE vehicleLicence = "${vehicleLicence}";`
     );
 
     // prepare response
