@@ -6,7 +6,10 @@ const router = express.Router();
 router
     .route('/')
     .get(reservationController.getAllReservations)
-    .post(reservationController.createReservation);
+    .post(
+        reservationController.checkReservationAvailability,
+        reservationController.createReservation
+    );
 router
     .route('/:id')
     .get(reservationController.getReservation)
