@@ -13,7 +13,10 @@ router
 router
     .route('/:id')
     .get(reservationController.getReservation)
-    .put(reservationController.updateReservation)
+    .put(
+        reservationController.checkReservationAvailability,
+        reservationController.updateReservation
+    )
     .delete(reservationController.deleteReservation);
 
 module.exports = router;
