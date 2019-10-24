@@ -5,7 +5,7 @@
         "model": "S-ClASS",
         "year": 2002,
         "color": "green",
-        "status": "maintenance",
+        "status": "available",
         "vehicleTypeName": "Standard",
         "location": "Sunshine St.",
         "city": "Victoria"
@@ -16,7 +16,7 @@
         "model": "S-ClASS",
         "year": 2012,
         "color": "red",
-        "status": "maintenance",
+        "status": "available",
         "vehicleTypeName": "Standard",
         "location": "Downtown",
         "city": "Edmonton"
@@ -38,7 +38,7 @@
         "model": "A-Class",
         "year": 2012,
         "color": "red",
-        "status": "rented",
+        "status": "available",
         "vehicleTypeName": "SUV",
         "location": "East St.",
         "city": "Vancouver"
@@ -71,7 +71,7 @@
         "model": "X-Class",
         "year": 1996,
         "color": "red",
-        "status": "maintenance",
+        "status": "available",
         "vehicleTypeName": "Mid-size",
         "location": "East St.",
         "city": "Toronto"
@@ -82,7 +82,7 @@
         "model": "A-Class",
         "year": 2000,
         "color": "red",
-        "status": "maintenance",
+        "status": "available",
         "vehicleTypeName": "Mid-size",
         "location": "Waterfront",
         "city": "Vancouver"
@@ -126,7 +126,7 @@
         "model": "S-ClASS",
         "year": 2017,
         "color": "red",
-        "status": "rented",
+        "status": "available",
         "vehicleTypeName": "Truck",
         "location": "East St.",
         "city": "Montreal"
@@ -137,7 +137,7 @@
         "model": "A-Class",
         "year": 2002,
         "color": "green",
-        "status": "maintenance",
+        "status": "available",
         "vehicleTypeName": "SUV",
         "location": "Sunshine St.",
         "city": "Edmonton"
@@ -148,7 +148,7 @@
         "model": "S-ClASS",
         "year": 2011,
         "color": "blue",
-        "status": "maintenance",
+        "status": "available",
         "vehicleTypeName": "Mid-size",
         "location": "Downtown",
         "city": "Toronto"
@@ -170,7 +170,7 @@
         "model": "S-ClASS",
         "year": 1991,
         "color": "red",
-        "status": "maintenance",
+        "status": "available",
         "vehicleTypeName": "Truck",
         "location": "Waterfront",
         "city": "Waterloo"
@@ -192,7 +192,7 @@
         "model": "X-Class",
         "year": 2012,
         "color": "yellow",
-        "status": "rented",
+        "status": "available",
         "vehicleTypeName": "Mid-size",
         "location": "Downtown",
         "city": "Montreal"
@@ -203,7 +203,7 @@
         "model": "S-ClASS",
         "year": 1991,
         "color": "pink",
-        "status": "rented",
+        "status": "available",
         "vehicleTypeName": "Full-size",
         "location": "East St.",
         "city": "Ottawa"
@@ -214,7 +214,7 @@
         "model": "X-Class",
         "year": 2007,
         "color": "yellow",
-        "status": "rented",
+        "status": "available",
         "vehicleTypeName": "Standard",
         "location": "Waterfront",
         "city": "Ottawa"
@@ -225,7 +225,7 @@
         "model": "A-Class",
         "year": 1999,
         "color": "pink",
-        "status": "maintenance",
+        "status": "available",
         "vehicleTypeName": "SUV",
         "location": "Downtown",
         "city": "London"
@@ -236,7 +236,7 @@
         "model": "X-Class",
         "year": 1994,
         "color": "blue",
-        "status": "rented",
+        "status": "maintenance",
         "vehicleTypeName": "Mid-size",
         "location": "Waterfront",
         "city": "Edmonton"
@@ -247,7 +247,7 @@
         "model": "S-ClASS",
         "year": 2008,
         "color": "yellow",
-        "status": "rented",
+        "status": "maintenance",
         "vehicleTypeName": "Mid-size",
         "location": "East St.",
         "city": "Waterloo"
@@ -258,7 +258,7 @@
         "model": "A-Class",
         "year": 1999,
         "color": "brown",
-        "status": "maintenance",
+        "status": "available",
         "vehicleTypeName": "Compact",
         "location": "Central Ave.",
         "city": "Ottawa"
@@ -269,7 +269,7 @@
         "model": "A-Class",
         "year": 2018,
         "color": "blue",
-        "status": "maintenance",
+        "status": "available",
         "vehicleTypeName": "Truck",
         "location": "Central Ave.",
         "city": "Toronto"
@@ -302,7 +302,7 @@
         "model": "A-Class",
         "year": 2007,
         "color": "yellow",
-        "status": "rented",
+        "status": "maintenance",
         "vehicleTypeName": "Mid-size",
         "location": "Sunshine St.",
         "city": "London"
@@ -324,7 +324,7 @@
         "model": "S-ClASS",
         "year": 2011,
         "color": "pink",
-        "status": "rented",
+        "status": "maintenance",
         "vehicleTypeName": "SUV",
         "location": "East St.",
         "city": "Waterloo"
@@ -346,7 +346,7 @@
         "model": "S-ClASS",
         "year": 2010,
         "color": "blue",
-        "status": "rented",
+        "status": "available",
         "vehicleTypeName": "SUV",
         "location": "Waterfront",
         "city": "Waterloo"
@@ -357,7 +357,7 @@
         "model": "B-Class",
         "year": 2014,
         "color": "brown",
-        "status": "maintenance",
+        "status": "available",
         "vehicleTypeName": "Truck",
         "location": "Central Ave.",
         "city": "Vancouver"
@@ -401,7 +401,7 @@
         "model": "S-ClASS",
         "year": 2008,
         "color": "green",
-        "status": "rented",
+        "status": "maintenance",
         "vehicleTypeName": "Truck",
         "location": "Downtown",
         "city": "Toronto"
@@ -412,7 +412,7 @@
         "model": "X-Class",
         "year": 1998,
         "color": "brown",
-        "status": "rented",
+        "status": "available",
         "vehicleTypeName": "Mid-size",
         "location": "Sunshine St.",
         "city": "Waterloo"
@@ -423,7 +423,7 @@
         "model": "A-Class",
         "year": 2014,
         "color": "pink",
-        "status": "rented",
+        "status": "available",
         "vehicleTypeName": "Standard",
         "location": "Waterfront",
         "city": "Toronto"
