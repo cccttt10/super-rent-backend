@@ -26,8 +26,9 @@ const reportDailyRents = async (req, res, next) => {
             report.push({ branch, dailyRents: [...dailyRents] });
     }
     log.info('====== PRINTING REPORT ======');
+    log.info('====== PRINTING DISABLED FOR PERFORMANCE ======');
     // eslint-disable-next-line no-console
-    report.forEach(r => console.log(r));
+    // report.forEach(r => console.log(r));
     res.status(200)
         .set({
             'X-Total-Count': report.length,
