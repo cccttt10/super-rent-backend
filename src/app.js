@@ -35,6 +35,6 @@ app.use('/vehicles', vehicleRoutes);
 app.use('/reservations', reservationRoutes);
 app.use('/rents', rentRoutes);
 app.use('/returns', returnRoutes);
-app.use('/report', reportRoutes);
+app.use('/reports', reportRoutes);
 
 module.exports = app;
