@@ -7,6 +7,7 @@ const vehicleRoutes = require('./routes/vehicleRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
 const rentRoutes = require('./routes/rentRoutes');
 const returnRoutes = require('./routes/returnRoutes');
+const reportRoutes = require('./routes/reportRoutes');
 const updateVehicleAvailability = require('./controllers/vehicleController/updateVehicleAvailability');
 
 const handleOptionsRequest = (req, res, next) => {
@@ -34,5 +35,6 @@ app.use('/vehicles', vehicleRoutes);
 app.use('/reservations', reservationRoutes);
 app.use('/rents', rentRoutes);
 app.use('/returns', returnRoutes);
+app.use('/report', reportRoutes);
 
 module.exports = app;
