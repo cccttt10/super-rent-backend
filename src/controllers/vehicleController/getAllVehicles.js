@@ -8,6 +8,7 @@ const getAllVehicles = async (req, res, next) => {
 
     // prepare query: filtering based on city, vehicle type, to / from dates
     const city = req.query.city ? req.query.city : null;
+    const status = req.query.status ? req.query.status : null;
     const vehicleTypeName = req.query.vehicleTypeName
         ? req.query.vehicleTypeName
         : null;
@@ -16,6 +17,11 @@ const getAllVehicles = async (req, res, next) => {
     query += ` 
         WHERE V.city <> "just a placeholder"
                ${city !== null ? ` AND V.city = "${city}"` : ''}
+               ${
+                   status !== null && status !== 'all'
+                       ? ` AND V.status = "${status}"`
+                       : ''
+               }
                ${
                    vehicleTypeName !== null
                        ? ` AND V.vehicleTypeName = "${vehicleTypeName}"`
@@ -41,13 +47,13 @@ const getAllVehicles = async (req, res, next) => {
         query += ` ORDER BY ${sort} ${order}`;
     }
 
-    // prepare query: pagination
-    if (req.query._start && req.query._end) {
-        const start = req.query._start;
-        const end = req.query._end;
-        const numRows = end - start;
-        query += ` LIMIT ${start}, ${numRows}`;
-    }
+    // // prepare query: pagination
+    // if (req.query._start && req.query._end) {
+    //     const start = req.query._start;
+    //     const end = req.query._end;
+    //     const numRows = end - start;
+    //     query += ` LIMIT ${start}, ${numRows}`;
+    // }
 
     // send query
     let results = await _db.query(query);
@@ -55,15 +61,25 @@ const getAllVehicles = async (req, res, next) => {
     // prepare response
     results = JSON.parse(JSON.stringify(results));
     let vehicles = results[0];
+    const numVehicles = vehicles.length;
     // const totalCount = vehicles.length;
+
+    // pagination
+    if (req.query._start && req.query._end) {
+        const start = req.query._start;
+        const end = req.query._end;
+        const numRows = end - start;
+        vehicles = vehicles.slice(start, numRows);
+    }
+
     vehicles = vehicles.map(vehicle => {
         vehicle.id = vehicle.vehicleLicence;
         return vehicle;
     });
 
-    results = await _db.query('SELECT COUNT(*) FROM vehicles');
-    results = JSON.parse(JSON.stringify(results));
-    const numVehicles = results[0][0]['COUNT(*)'];
+    // results = await _db.query('SELECT COUNT(*) FROM vehicles');
+    // results = JSON.parse(JSON.stringify(results));
+    // const numVehicles = results[0][0]['COUNT(*)'];
 
     // send response
     res.status(200)
