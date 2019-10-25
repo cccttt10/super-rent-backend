@@ -3,6 +3,6 @@ const reportController = require('../controllers/reportController/');
 
 const router = express.Router();
 
-router.get('/rents/:date', reportController.reportDailyRents);
+router.get('/rents', reportController.reportDailyRents);
 
 module.exports = router;

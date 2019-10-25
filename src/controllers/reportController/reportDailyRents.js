@@ -1,5 +1,6 @@
 const _db = require('../../db').getDb();
 const log = require('../../util/log');
+const moment = require('moment');
 
 const reportDailyRents = async (req, res, next) => {
     let results = await _db.query(`
@@ -10,7 +11,7 @@ const reportDailyRents = async (req, res, next) => {
     let branches = results[0];
 
     let report = [];
-    const date = req.params.date.split('T')[0];
+    const date = moment().format('YYYY-MM-DD');
     for (const branch of branches) {
         let results = await _db.query(`
             SELECT * FROM rents as R, vehicles as V 
