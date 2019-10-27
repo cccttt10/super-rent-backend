@@ -68,8 +68,7 @@ const getAllVehicles = async (req, res, next) => {
     if (req.query._start && req.query._end) {
         const start = req.query._start;
         const end = req.query._end;
-        const numRows = end - start;
-        vehicles = vehicles.slice(start, numRows);
+        vehicles = vehicles.slice(start, end);
     }
 
     vehicles = vehicles.map(vehicle => {
