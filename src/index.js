@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV === 'production')
+    // eslint-disable-next-line no-console
+    console.log = () => {}; // suppress all logs in production
+
 const db = require('./db');
 (async () => {
     await db.initDb();
