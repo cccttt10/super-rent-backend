@@ -4,12 +4,12 @@
     "description": "Node.js backend for CPSC 304 project super rent",
     "main": "./src/index.js",
     "engines": {
-        "node": ">= 10 < 11"
+        "node": "10.x.x"
     },
     "scripts": {
-        "start": "node src/index.js",
+        "start": "NODE_ENV=production node src/index.js",
+        "start:optional": "pm2-runtime start ecosystem.config.js --env production",
         "dev": "NODE_ENV=development nodemon src/index.js",
-        "prod": "pm2-runtime start ecosystem.config.js --env production",
         "import": "node src/dev-data/script.js --import",
         "delete": "node src/dev-data/script.js --delete",
         "lint": "eslint . --ext .js",
@@ -24,6 +24,7 @@
     "author": "Yifei Chen, Chuntong Gao, Frank Zhou",
     "license": "ISC",
     "dependencies": {
+        "@google-cloud/debug-agent": "^4.0.4",
         "colors": "^1.4.0",
         "cors": "^2.8.5",
         "dotenv": "^8.1.0",
