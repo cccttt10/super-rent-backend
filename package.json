@@ -7,8 +7,8 @@
         "node": "10.x.x"
     },
     "scripts": {
-        "start": "NODE_ENV=production node src/index.js",
-        "start:optional": "pm2-runtime start ecosystem.config.js --env production",
+        "start": "pm2-runtime start ecosystem.config.js --env production",
+        "start:standard": "NODE_ENV=production node src/index.js",
         "dev": "NODE_ENV=development nodemon src/index.js",
         "import": "node src/dev-data/script.js --import",
         "delete": "node src/dev-data/script.js --delete",
@@ -31,15 +31,13 @@
         "express": "^4.17.1",
         "moment": "^2.24.0",
         "morgan": "^1.9.1",
-        "mysql": "^2.17.1",
         "mysql2": "^1.7.0",
+        "pm2": "^4.1.2",
         "uuid": "^3.3.3"
     },
     "devDependencies": {
         "eslint": "^6.5.1",
         "husky": "^3.0.9",
-        "nodemon": "^1.19.3",
-        "pm2": "^4.1.2",
         "prettier": "^1.18.2"
     },
     "husky": {

@@ -9,7 +9,7 @@ const db = require('./db');
     await db.initDb();
     const app = require('./app');
     const log = require('./util/log');
-    const port = process.env.NODE_ENV === 'development' ? 3300 : 8080;
+    const port = process.env.NODE_ENV === 'development' ? 3300 : process.env.PORT;
     app.listen(port, () => {
         log.success(`App running on port ${port}...`);
     });
