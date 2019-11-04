@@ -6,17 +6,20 @@ const updateCustomer = async (req, res, next) => {
     const prevDriversLicence = req.params.id;
     const { driversLicence, phone, name } = req.body;
 
+    let results;
     // check if driversLicence already exists
-    let results = await _db.query(
-        `SELECT COUNT(*) FROM customers WHERE driversLicence = "${driversLicence}";`
-    );
-    results = JSON.parse(JSON.stringify(results));
-    const count = results[0][0]['COUNT(*)'];
-    if (count > 0)
-        throw new SuperRentError({
-            message: `There is already a customer with driver's licence ${driversLicence} ❎`,
-            statusCode: 500
-        });
+    if (prevDriversLicence !== driversLicence) {
+        results = await _db.query(
+            `SELECT COUNT(*) FROM customers WHERE driversLicence = "${driversLicence}";`
+        );
+        results = JSON.parse(JSON.stringify(results));
+        const count = results[0][0]['COUNT(*)'];
+        if (count > 0)
+            throw new SuperRentError({
+                message: `There is already a customer with driver's licence ${driversLicence} ❎`,
+                statusCode: 500
+            });
+    }
 
     // send query
     await _db.query(

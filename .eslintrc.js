@@ -17,6 +17,7 @@ module.exports = {
         }
     ],
     'rules': {
+        'require-atomic-updates': 'off',
         'no-var': 'error',
         'require-await': 'error',
         'no-trailing-spaces': 'error',

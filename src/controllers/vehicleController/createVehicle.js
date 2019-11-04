@@ -1,4 +1,5 @@
 const _db = require('../../db').getDb();
+const SuperRentError = require('../../util/SuperRentError');
 
 const createVehicle = async (req, res, next) => {
     // prepare query
@@ -14,8 +15,20 @@ const createVehicle = async (req, res, next) => {
         city
     } = req.body;
 
-    // send query
+    // check if vehicleLicence already exists
     let results = await _db.query(
+        `SELECT COUNT(*) FROM vehicles WHERE vehicleLicence = "${vehicleLicence}";`
+    );
+    results = JSON.parse(JSON.stringify(results));
+    const count = results[0][0]['COUNT(*)'];
+    if (count > 0)
+        throw new SuperRentError({
+            message: `There is already a vehicle with vehicle licence ${vehicleLicence} ❎`,
+            statusCode: 500
+        });
+
+    // send query
+    results = await _db.query(
         `
             INSERT INTO vehicles(vehicleLicence, make, model, year, color, status, vehicleTypeName, location, city)
             VALUES(${vehicleLicence}, "${make}", "${model}", ${year}, "${color}", "${status}", "${vehicleTypeName}", "${location}", "${city}");
