@@ -1,5 +1,7 @@
 const _db = require('../../db').getDb();
 const log = require('../../util/log');
+const SuperRentError = require('../../util/SuperRentError');
+const moment = require('moment');
 
 const getAllVehicles = async (req, res, next) => {
     // prepare query
@@ -14,6 +16,13 @@ const getAllVehicles = async (req, res, next) => {
         : null;
     const fromDate = req.query.fromDate ? req.query.fromDate : null;
     const toDate = req.query.toDate ? req.query.toDate : null;
+    if (fromDate !== null && toDate !== null) {
+        if (moment(fromDate).isAfter(toDate))
+            throw new SuperRentError({
+                message: 'From date cannot be after until date',
+                statusCode: 500
+            });
+    }
     query += ` 
         WHERE V.city <> "just a placeholder"
                ${city !== null ? ` AND V.city = "${city}"` : ''}
