@@ -1,9 +1,22 @@
 const _db = require('../../db').getDb();
+const SuperRentError = require('../../util/SuperRentError');
 
 const updateCustomer = async (req, res, next) => {
     // prepare query
     const prevDriversLicence = req.params.id;
     const { driversLicence, phone, name } = req.body;
+
+    // check if driversLicence already exists
+    let results = await _db.query(
+        `SELECT COUNT(*) FROM customers WHERE driversLicence = "${driversLicence}";`
+    );
+    results = JSON.parse(JSON.stringify(results));
+    const count = results[0][0]['COUNT(*)'];
+    if (count > 0)
+        throw new SuperRentError({
+            message: `There is already a customer with driver's licence ${driversLicence} ❎`,
+            statusCode: 500
+        });
 
     // send query
     await _db.query(
@@ -15,7 +28,7 @@ const updateCustomer = async (req, res, next) => {
                 WHERE driversLicence = '${prevDriversLicence}';
         `
     );
-    let results = await _db.query(
+    results = await _db.query(
         `SELECT * FROM customers WHERE driversLicence = '${driversLicence}';`
     );
 
