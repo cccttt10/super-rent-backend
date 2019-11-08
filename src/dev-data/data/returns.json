@@ -3,5 +3,50 @@
         "rentId": "b6a0524f-d786-4ba6-97f7-550ccc9a2e63",
         "date": "2020-02-11",
         "price": 100
+    },
+    {
+        "rentId":"v36gvw296q1es51ugmmlpe9ez88jmn",
+        "date": "2020-01-11",
+        "price": "192"
+    },
+    {
+        "rentId":"9o50x5hr6y4lh13p37c5rxyx0glqbk",
+        "date": "2019-12-30",
+        "price": "291"
+    },
+    {
+        "rentId":"juxztalg5su8sv52q0hh06fycxer8r",
+        "date": "2019-01-09",
+        "price": "223"
+    },
+    {
+        "rentId":"w1dvv6z1vcwig4wa3x6e21ttchqan9",
+        "date": "2019-11-11",
+        "price": "129"
+    },
+    {
+        "rentId":"f6p43namcfxfnjwt9o50x5hr6y4lh1",
+        "date": "2019-12-16",
+        "price": "201"
+    },
+    {
+        "rentId":"3p37c5rxyx0glqbkjuxztalg5su8sv",
+        "date": "2019-12-03",
+        "price": "221"
+    },
+    {
+        "rentId":"wa3x6e21ttchqan9q2a20w97mbjnks",
+        "date": "2019-12-01",
+        "price": "109"
+    },
+    {
+        "rentId":"073ozbp3zrdkkjmc7cx66hjlfx72rf",
+        "date": "2019-12-29",
+        "price": "502"
+    },
+    {
+        "rentId":"wytaufe1t81v4bzzqq9fo7l7n080yu",
+        "date": "2019-12-11",
+        "price": "129"
     }
 ]
