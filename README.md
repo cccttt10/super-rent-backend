@@ -4,7 +4,7 @@
 
 2. Clone this repository: `git clone https://github.com/chuntonggao/super-rent-backend.git`
 
-3. Place the `config.env` file in the project root directory (Do NOT ever share this file with anyone)
+3. Place the `config.env` file in the project root directory (Do NOT ever share this file with anyone because it contains sentitive information like database password)
 
 ## Run the server in development mode
 
