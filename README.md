@@ -1,4 +1,8 @@
-## Configure your environment
+# Instructions for local development
+
+Follow the instructions below if you want to get the project running on your local machine.
+
+### Configure your environment
 
 1. [Install Node LTS](https://nodejs.org/en/download/), which will also install NPM (you should be able to execute `node --version` and `npm --version` in your terminal)
 
@@ -6,7 +10,7 @@
 
 3. Place the `config.env` file in the project root directory (Do NOT ever share this file with anyone because it contains sentitive information like database password)
 
-## Run the server in development mode
+### Run the server in development mode
 
 Once your environment is configured, in the project root directory:
 
