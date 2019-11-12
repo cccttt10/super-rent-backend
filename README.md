@@ -18,3 +18,4 @@ Once your environment is configured, in the project root directory:
 
 2. `npm run dev` to start the server in development mode
 
+### [Follow this link if you want to see the front end as well](https://github.com/chuntonggao/super-rent-frontend)
