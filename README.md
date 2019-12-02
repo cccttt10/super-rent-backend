@@ -1,3 +1,11 @@
+# Super Rent Back End
+
+![main-color](./assets/main-color.png)
+
+![main-transparent](./assets/main-transparent.png)
+
+> Node.js back end for Super Rent car rental company
+
 # Instructions for local development
 
 Follow the instructions below if you want to get the project running on your local machine.
