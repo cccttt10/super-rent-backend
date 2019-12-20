@@ -34,7 +34,7 @@ const updateVehicleAvailability = async (req, res, next) => {
     for (const rentedVehicle of rentedVehicles) {
         updateAvailabilityQuery += `UPDATE vehicles SET status = "rented" WHERE vehicleLicence = "${rentedVehicle}";`;
     }
-    await _db.query(updateAvailabilityQuery);
+    if (updateAvailabilityQuery) await _db.query(updateAvailabilityQuery);
     return next();
 };
 
