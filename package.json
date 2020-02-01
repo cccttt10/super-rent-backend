@@ -7,8 +7,7 @@
         "node": "10.x.x"
     },
     "scripts": {
-        "start": "pm2-runtime start ecosystem.config.js --env production",
-        "start:standard": "NODE_ENV=production node src/index.js",
+        "start": "NODE_ENV=production node src/index.js",
         "dev": "NODE_ENV=development nodemon src/index.js",
         "import": "node src/dev-data/script.js --import",
         "delete": "node src/dev-data/script.js --delete",
